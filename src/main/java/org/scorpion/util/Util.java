@@ -25,7 +25,6 @@ public class Util {
 
     public static void manageLang() {
         FileManager file = new FileManager("plugins/HoneyCore/Settings.yml");
-        file.delete();
 
         if (!file.exist()) {
             file.set("language", "de");
@@ -35,7 +34,6 @@ public class Util {
         }
 
         FileManager de = new FileManager("plugins/HoneyCore/Lang/de.yml");
-        de.delete();
 
         if (!de.exist()) {
             de.set("message.gamemode", "&6Dein Spielmodus ist jetzt auf &c%gm%&6!");
@@ -44,7 +42,6 @@ public class Util {
         }
 
         FileManager en = new FileManager("plugins/HoneyCore/Lang/en.yml");
-        en.delete();
 
         if (!en.exist()) {
             en.set("message.gamemode", "&6Your gamemode changed to &c%gm%&6!");

@@ -1,0 +1,9 @@
+name: HoneyCore
+main: org.scorpion.HoneyCore
+version: 1.0
+api-version: 1.17
+author: NightDev401 (Lukas)
+commands:
+  gamemode:
+  gm:
+  heal:

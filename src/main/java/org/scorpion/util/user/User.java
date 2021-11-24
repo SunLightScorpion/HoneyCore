@@ -9,14 +9,4 @@ public interface User {
 
     void createUser();
 
-    double getMoney();
-
-    void setMoney(double value);
-
-    void addMoney(double value);
-
-    void removeMoney(double value);
-
-    boolean hasEnough(double value);
-
 }

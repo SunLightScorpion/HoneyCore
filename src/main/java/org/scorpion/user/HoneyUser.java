@@ -25,31 +25,4 @@ public record HoneyUser(UUID uuid) implements User {
         }
     }
 
-    @Override
-    public double getMoney() {
-        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
-        return Double.parseDouble(file.getString("money"));
-    }
-
-    @Override
-    public void setMoney(double value) {
-        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
-        file.set("money", String.valueOf(value));
-        file.save();
-    }
-
-    @Override
-    public void addMoney(double value) {
-        setMoney(getMoney() + value);
-    }
-
-    @Override
-    public void removeMoney(double value) {
-        setMoney(getMoney() - value);
-    }
-
-    @Override
-    public boolean hasEnough(double value) {
-        return getMoney() >= value;
-    }
 }

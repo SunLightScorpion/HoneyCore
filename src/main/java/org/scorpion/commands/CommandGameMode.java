@@ -37,6 +37,8 @@ public class CommandGameMode implements CommandExecutor {
                             p.sendMessage(Util.getColorCode(Util.getMessage("message.gamemode").replace("%gm%", p.getGameMode().toString())));
                         }
                     }
+                } else {
+                    Util.sendNoPermission(p);
                 }
             } else if (args.length == 2) {
                 String data = args[0];
@@ -70,6 +72,8 @@ public class CommandGameMode implements CommandExecutor {
                             p.sendMessage(Util.getColorCode(Util.getMessage("message.gamemode-target").replace("%gm%", t.getGameMode().toString()).replace("%target%", t.getName())));
                         }
                     }
+                } else {
+                    Util.sendNoPermission(p);
                 }
             }
         }

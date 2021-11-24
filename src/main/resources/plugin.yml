@@ -7,3 +7,5 @@ commands:
   gamemode:
   gm:
   heal:
+  setspawn:
+  spawn:

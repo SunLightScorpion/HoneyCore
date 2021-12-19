@@ -7,7 +7,6 @@ compileJava {
 }
 
 group 'org.scorpion'
-version ''
 
 repositories {
     mavenCentral()
@@ -18,8 +17,17 @@ repositories {
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT")
+    implementation 'org.jetbrains:annotations:22.0.0'
+    implementation files('API/json.jar')
 }
 
+jar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    from(zipTree("API/json.jar"))
+    from {
+        subprojects.collect { it.sourceSets.main.output }
+    }
+}
 
 test {
     useJUnitPlatform()

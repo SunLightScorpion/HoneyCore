@@ -1,10 +1,7 @@
 package org.scorpion;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import org.scorpion.commands.CommandGameMode;
-import org.scorpion.commands.CommandHeal;
-import org.scorpion.commands.CommandSetSpawn;
-import org.scorpion.commands.CommandSpawn;
+import org.scorpion.commands.*;
 import org.scorpion.listener.HoneyCommandListener;
 import org.scorpion.listener.HoneyUserListener;
 import org.scorpion.util.Util;
@@ -31,6 +28,22 @@ public class HoneyCore extends JavaPlugin {
         Objects.requireNonNull(getCommand("heal")).setExecutor(new CommandHeal());
         Objects.requireNonNull(getCommand("setspawn")).setExecutor(new CommandSetSpawn());
         Objects.requireNonNull(getCommand("spawn")).setExecutor(new CommandSpawn());
+        Objects.requireNonNull(getCommand("tp")).setExecutor(new CommandTeleport());
+        Objects.requireNonNull(getCommand("teleport")).setExecutor(new CommandTeleport());
+        Objects.requireNonNull(getCommand("rtp")).setExecutor(new CommandRandomTeleport());
+
+        Objects.requireNonNull(getCommand("tpa")).setExecutor(new CommandTPA());
+        Objects.requireNonNull(getCommand("tpaccept")).setExecutor(new CommandTPAccept());
+        Objects.requireNonNull(getCommand("tpdeny")).setExecutor(new CommandTPDeny());
+        Objects.requireNonNull(getCommand("tpahere")).setExecutor(new CommandTPAHere());
+
+        Objects.requireNonNull(getCommand("workbench")).setExecutor(new CommandWorkbench());
+        Objects.requireNonNull(getCommand("wb")).setExecutor(new CommandWorkbench());
+        Objects.requireNonNull(getCommand("craft")).setExecutor(new CommandWorkbench());
+
+        Objects.requireNonNull(getCommand("sethome")).setExecutor(new CommandSetHome());
+        Objects.requireNonNull(getCommand("delhome")).setExecutor(new CommandDeleteHome());
+        Objects.requireNonNull(getCommand("home")).setExecutor(new CommandHome());
 
         getServer().getPluginManager().registerEvents(new HoneyUserListener(), this);
         getServer().getPluginManager().registerEvents(new HoneyCommandListener(), this);

@@ -9,3 +9,16 @@ commands:
   heal:
   setspawn:
   spawn:
+  teleport:
+  tp:
+  rtp:
+  tpa:
+  tpaccept:
+  tpdeny:
+  tpahere:
+  workbench:
+  wb:
+  craft:
+  sethome:
+  home:
+  delhome:

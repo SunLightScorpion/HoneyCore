@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
  */
 public class Util {
 
-    public final static String VERSION = "1.1";
+    public final static String VERSION = "1.2-SNAPSHOT";
     protected static final HashMap<Player, Player> tpa = new HashMap<>();
     protected static final HashMap<Player, Player> tpaHere = new HashMap<>();
     private final static Pattern pattern = Pattern.compile("#[a-fA-F0-9]{6}");

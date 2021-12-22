@@ -55,6 +55,7 @@ public class Util {
             file.set("permission.setspawn", "honey.setspawn");
             file.set("permission.admin", "honey.admin");
             file.set("permission.tp", "honey.tp");
+            file.set("permission.enderchest-target", "honey.enderchest.target");
         }
 
         if (!de.exist()) {

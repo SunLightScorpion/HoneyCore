@@ -67,24 +67,19 @@ public record HoneyUser(UUID uuid) implements User {
 
     @Override
     public Location getHome(String name) {
-        File file = new File("plugins/ServerAPI/playerdata/" + uuid.toString() + ".yml");
-        YamlConfiguration data = YamlConfiguration.loadConfiguration(file);
-        return data.getLocation("home-" + name);
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+        return file.getLocation("home-" + name);
     }
 
     @Override
     public void addHome(String home) {
-        File file = new File("plugins/ServerAPI/playerdata/" + uuid.toString() + ".yml");
-        YamlConfiguration data = YamlConfiguration.loadConfiguration(file);
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
         List<String> list = getHomes();
         if (!list.contains(home)) {
             list.add(home);
         }
-        data.set("homes", list);
-        try {
-            data.save(file);
-        } catch (IOException ignored) {
-        }
+        file.set("homes", list);
+        file.save();
     }
 
     @Override
@@ -140,6 +135,19 @@ public record HoneyUser(UUID uuid) implements User {
     @Override
     public boolean existHome(String name) {
         return getHomes().contains(name);
+    }
+
+    @Override
+    public void setDeathPoint(Location location) {
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+        file.set("death-point", location);
+        file.save();
+    }
+
+    @Override
+    public Location getDeathPoint() {
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+        return file.getLocation("death-point");
     }
 
 }

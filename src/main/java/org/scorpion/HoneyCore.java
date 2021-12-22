@@ -1,5 +1,6 @@
 package org.scorpion;
 
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.scorpion.commands.*;
 import org.scorpion.listener.HoneyCommandListener;
@@ -44,6 +45,10 @@ public class HoneyCore extends JavaPlugin {
         Objects.requireNonNull(getCommand("sethome")).setExecutor(new CommandSetHome());
         Objects.requireNonNull(getCommand("delhome")).setExecutor(new CommandDeleteHome());
         Objects.requireNonNull(getCommand("home")).setExecutor(new CommandHome());
+        Objects.requireNonNull(getCommand("back")).setExecutor(new CommandBack());
+
+        Objects.requireNonNull(getCommand("ec")).setExecutor(new CommandEnderChest());
+        Objects.requireNonNull(getCommand("enderchest")).setExecutor(new CommandEnderChest());
 
         getServer().getPluginManager().registerEvents(new HoneyUserListener(), this);
         getServer().getPluginManager().registerEvents(new HoneyCommandListener(), this);

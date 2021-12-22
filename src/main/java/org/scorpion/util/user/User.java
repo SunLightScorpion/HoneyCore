@@ -31,4 +31,8 @@ public interface User {
 
     boolean existHome(String name);
 
+    void setDeathPoint(Location location);
+
+    Location getDeathPoint();
+
 }

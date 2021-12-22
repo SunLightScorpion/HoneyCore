@@ -4,7 +4,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.scorpion.HoneyCore;
 import org.scorpion.user.HoneyUser;
 import org.scorpion.util.Util;
@@ -35,6 +37,21 @@ public class HoneyUserListener implements Listener {
                 }
             }
         }, 20 * 3);
+    }
+
+    @EventHandler
+    public void on(PlayerDeathEvent e){
+        Player p = e.getEntity();
+        var user = new HoneyUser(p.getUniqueId());
+        user.setDeathPoint(p.getLocation());
+    }
+
+    @EventHandler
+    public void on(PlayerRespawnEvent e){
+        Player p = e.getPlayer();
+        Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), () -> {
+            p.teleport(Util.getSpawn());
+        }, 5);
     }
 
 }

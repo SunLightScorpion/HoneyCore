@@ -22,3 +22,6 @@ commands:
   sethome:
   home:
   delhome:
+  ec:
+  enderchest:
+  back:

@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.scorpion.HoneyCore;
 import org.scorpion.user.HoneyUser;
@@ -52,6 +53,11 @@ public class HoneyUserListener implements Listener {
         Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), () -> {
             p.teleport(Util.getSpawn());
         }, 5);
+    }
+
+    @EventHandler
+    public void on(PlayerQuitEvent e){
+        Player p = e.getPlayer();
     }
 
 }

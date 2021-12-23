@@ -67,13 +67,13 @@ public record HoneyUser(UUID uuid) implements User {
 
     @Override
     public Location getHome(String name) {
-        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+        FileManager file = new FileManager("plugins/HoneyCore/playerdata/" + uuid() + ".yml");
         return file.getLocation("home-" + name);
     }
 
     @Override
     public void addHome(String home) {
-        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+        FileManager file = new FileManager("plugins/HoneyCore/playerdata/" + uuid() + ".yml");
         List<String> list = getHomes();
         if (!list.contains(home)) {
             list.add(home);

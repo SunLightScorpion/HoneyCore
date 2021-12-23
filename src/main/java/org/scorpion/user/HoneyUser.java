@@ -60,7 +60,7 @@ public record HoneyUser(UUID uuid) implements User {
 
     @Override
     public List<String> getHomes() {
-        File file = new File("plugins/ServerAPI/playerdata/" + uuid.toString() + ".yml");
+        File file = new File("plugins/HoneyCore/playerdata/" + uuid.toString() + ".yml");
         YamlConfiguration data = YamlConfiguration.loadConfiguration(file);
         return data.getStringList("homes");
     }
@@ -84,7 +84,7 @@ public record HoneyUser(UUID uuid) implements User {
 
     @Override
     public void removeHome(String home) {
-        File file = new File("plugins/ServerAPI/playerdata/" + uuid.toString() + ".yml");
+        File file = new File("plugins/HoneyCore/playerdata/" + uuid.toString() + ".yml");
         YamlConfiguration data = YamlConfiguration.loadConfiguration(file);
         List<String> list = getHomes();
         list.remove(home);
@@ -97,7 +97,7 @@ public record HoneyUser(UUID uuid) implements User {
 
     @Override
     public void saveLocation(String name, Location location) {
-        File file = new File("plugins/ServerAPI/playerdata/" + uuid.toString() + ".yml");
+        File file = new File("plugins/HoneyCore/playerdata/" + uuid.toString() + ".yml");
         YamlConfiguration data = YamlConfiguration.loadConfiguration(file);
         data.set("home-" + name, location);
         try {
@@ -108,7 +108,7 @@ public record HoneyUser(UUID uuid) implements User {
 
     @Override
     public void removeLocation(String name) {
-        File file = new File("plugins/ServerAPI/playerdata/" + uuid.toString() + ".yml");
+        File file = new File("plugins/HoneyCore/playerdata/" + uuid.toString() + ".yml");
         YamlConfiguration data = YamlConfiguration.loadConfiguration(file);
         data.set("home-" + name, null);
         try {

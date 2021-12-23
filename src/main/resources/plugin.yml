@@ -25,3 +25,7 @@ commands:
   ec:
   enderchest:
   back:
+  warp:
+  setwarp:
+  delwarp:
+  fly:

@@ -1,6 +1,5 @@
 package org.scorpion;
 
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.scorpion.commands.*;
 import org.scorpion.listener.HoneyCommandListener;
@@ -32,6 +31,7 @@ public class HoneyCore extends JavaPlugin {
         Objects.requireNonNull(getCommand("tp")).setExecutor(new CommandTeleport());
         Objects.requireNonNull(getCommand("teleport")).setExecutor(new CommandTeleport());
         Objects.requireNonNull(getCommand("rtp")).setExecutor(new CommandRandomTeleport());
+        Objects.requireNonNull(getCommand("fly")).setExecutor(new CommandFly());
 
         Objects.requireNonNull(getCommand("tpa")).setExecutor(new CommandTPA());
         Objects.requireNonNull(getCommand("tpaccept")).setExecutor(new CommandTPAccept());
@@ -47,6 +47,11 @@ public class HoneyCore extends JavaPlugin {
         Objects.requireNonNull(getCommand("home")).setExecutor(new CommandHome());
         Objects.requireNonNull(getCommand("back")).setExecutor(new CommandBack());
 
+        Objects.requireNonNull(getCommand("warp")).setExecutor(new CommandWarp());
+        Objects.requireNonNull(getCommand("warp")).setTabCompleter(new CommandWarp());
+        Objects.requireNonNull(getCommand("setwarp")).setExecutor(new CommandSetWarp());
+        Objects.requireNonNull(getCommand("delwarp")).setExecutor(new CommandDelwarp());
+
         Objects.requireNonNull(getCommand("ec")).setExecutor(new CommandEnderChest());
         Objects.requireNonNull(getCommand("enderchest")).setExecutor(new CommandEnderChest());
 
@@ -54,6 +59,7 @@ public class HoneyCore extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new HoneyCommandListener(), this);
 
         Util.manageLang();
+        Util.initWarp();
     }
 
 }

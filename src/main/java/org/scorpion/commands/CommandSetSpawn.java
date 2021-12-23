@@ -23,4 +23,5 @@ public class CommandSetSpawn implements CommandExecutor {
         }
         return false;
     }
+
 }

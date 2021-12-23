@@ -19,4 +19,5 @@ public class CommandRandomTeleport implements CommandExecutor {
         }
         return false;
     }
+
 }

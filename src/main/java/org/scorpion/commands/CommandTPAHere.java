@@ -25,4 +25,5 @@ public class CommandTPAHere extends ScorpionCommand {
         }
         return false;
     }
+
 }

@@ -9,11 +9,13 @@ import org.json.JSONObject;
 import org.scorpion.util.file.FileManager;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Random;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -25,6 +27,7 @@ import java.util.regex.Pattern;
 public class Util {
 
     public final static String VERSION = "1.2-SNAPSHOT";
+    protected static final LinkedList<String> warps = new LinkedList<>();
     protected static final HashMap<Player, Player> tpa = new HashMap<>();
     protected static final HashMap<Player, Player> tpaHere = new HashMap<>();
     private final static Pattern pattern = Pattern.compile("#[a-fA-F0-9]{6}");
@@ -56,6 +59,7 @@ public class Util {
             file.set("permission.admin", "honey.admin");
             file.set("permission.tp", "honey.tp");
             file.set("permission.enderchest-target", "honey.enderchest.target");
+            file.set("permission.fly", "honey.fly");
         }
 
         if (!de.exist()) {
@@ -84,6 +88,25 @@ public class Util {
         file.save();
         de.save();
         en.save();
+    }
+
+    public static void reloadWarps() {
+        warps.clear();
+        initWarp();
+    }
+
+    public static LinkedList<String> getWarps() {
+        return warps;
+    }
+
+    public static void initWarp() {
+        File file = new File("plugins/HoneyCore/warp/");
+        File[] files = file.listFiles();
+        if (files != null) {
+            for (File object : files) {
+                warps.add(object.getName().replace(".yml", ""));
+            }
+        }
     }
 
     private static void saveRandomTPActionTime(UUID uuid) {

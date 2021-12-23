@@ -22,7 +22,7 @@ public class HoneyUserListener implements Listener {
     public void on(PlayerJoinEvent e) {
         Player p = e.getPlayer();
         User user = new HoneyUser(p.getUniqueId());
-        e.setJoinMessage("§8[§a+§] §7"+p.getName());
+        e.setJoinMessage("§8[§a+§7] §7"+p.getName());
 
         Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), user::createUser, 5);
 
@@ -59,7 +59,7 @@ public class HoneyUserListener implements Listener {
     @EventHandler
     public void on(PlayerQuitEvent e){
         Player p = e.getPlayer();
-        e.setQuitMessage("§8[§4-§] §7"+p.getName());
+        e.setQuitMessage("§8[§4-§7] §7"+p.getName());
     }
 
 }

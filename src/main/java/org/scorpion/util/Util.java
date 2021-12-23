@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
  */
 public class Util {
 
-    public final static String VERSION = "1.2.1";
+    public final static String VERSION = "1.3-SNAPSHOT";
     protected static final LinkedList<String> warps = new LinkedList<>();
     protected static final HashMap<Player, Player> tpa = new HashMap<>();
     protected static final HashMap<Player, Player> tpaHere = new HashMap<>();

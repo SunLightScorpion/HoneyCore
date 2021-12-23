@@ -29,3 +29,7 @@ commands:
   setwarp:
   delwarp:
   fly:
+  sun:
+  night:
+  day:
+  rain:

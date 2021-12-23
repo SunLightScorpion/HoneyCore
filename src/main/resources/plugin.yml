@@ -1,6 +1,6 @@
 name: HoneyCore
 main: org.scorpion.HoneyCore
-version: 1.0
+version: contains
 api-version: 1.17
 author: NightDev401 (Lukas)
 commands:

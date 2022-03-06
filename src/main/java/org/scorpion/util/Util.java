@@ -42,6 +42,15 @@ public class Util {
         return ChatColor.translateAlternateColorCodes('&', input);
     }
 
+    public static void addSetting(String data, Object value){
+        FileManager file = new FileManager("plugins/HoneyCore/Settings.yml");
+
+        if(!file.isSet(data)){
+            file.set(data, value);
+        }
+        file.save();
+    }
+
     public static void manageLang() {
         FileManager file = new FileManager("plugins/HoneyCore/Settings.yml");
         FileManager de = new FileManager("plugins/HoneyCore/Lang/de.yml");

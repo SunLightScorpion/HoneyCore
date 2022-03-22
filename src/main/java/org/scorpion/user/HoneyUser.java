@@ -55,7 +55,7 @@ public record HoneyUser(UUID uuid) implements User {
 
     @Override
     public int getMaxHomes() {
-        return 5;
+        return 9;
     }
 
     @Override

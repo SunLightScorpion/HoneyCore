@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.scorpion.util.Util;
+import org.scorpion.api.HoneyAPI;
 
 /**
  * @author Lukas on 12/22/2021
@@ -19,12 +19,12 @@ public class CommandEnderChest implements CommandExecutor {
             if (args.length == 0) {
                 p.openInventory(p.getEnderChest());
             } else {
-                if (p.hasPermission(Util.getPermission("enderchest-target"))) {
+                if (p.hasPermission(HoneyAPI.getPermission("enderchest-target"))) {
                     Player t = Bukkit.getPlayer(args[0]);
                     if (t != null) {
                         p.openInventory(t.getEnderChest());
                     } else {
-                        p.sendMessage(Util.getColorCode(Util.getMessage("message.player-not-found").replace("%target%", args[1])));
+                        p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.player-not-found").replace("%target%", args[1])));
                     }
                 }
             }

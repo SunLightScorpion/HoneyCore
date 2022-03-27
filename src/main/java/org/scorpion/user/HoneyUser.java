@@ -5,9 +5,11 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
-import org.scorpion.util.Util;
+import org.scorpion.user.inventory.UserInterface;
+import org.scorpion.api.HoneyAPI;
 import org.scorpion.util.file.FileManager;
 import org.scorpion.util.item.ItemBuilder;
+import org.scorpion.util.Time;
 import org.scorpion.util.user.User;
 
 import java.io.File;
@@ -44,18 +46,21 @@ public record HoneyUser(UUID uuid) implements User {
                         new ItemBuilder(Material.STONE_SHOVEL).build(),
                         new ItemBuilder(Material.STONE_HOE).build(),
                         new ItemBuilder(Material.COOKED_BEEF).setAmount(16).build(),
-                        new ItemBuilder(Material.GOLDEN_SHOVEL).build(),
                 };
 
-                player.teleport(Util.getSpawn());
+                player.teleport(HoneyAPI.getSpawn());
                 player.getInventory().addItem(kit);
+
+                if(HoneyAPI.welcomeNewPlayer()){
+                    Bukkit.broadcastMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.welcome-new-player", player.getName())));
+                }
             }
         }
     }
 
     @Override
     public int getMaxHomes() {
-        return 9;
+        return 7;
     }
 
     @Override
@@ -148,6 +153,22 @@ public record HoneyUser(UUID uuid) implements User {
     public Location getDeathPoint() {
         FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
         return file.getLocation("death-point");
+    }
+
+    @Override
+    public void ban(String reason, long ms, Time time) {
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+    }
+
+    @Override
+    public boolean isBanned() {
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+        return false;
+    }
+
+    @Override
+    public UserInterface getUserInterface() {
+        return new UserInterface();
     }
 
 }

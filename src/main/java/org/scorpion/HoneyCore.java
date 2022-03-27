@@ -4,7 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.scorpion.commands.*;
 import org.scorpion.listener.HoneyCommandListener;
 import org.scorpion.listener.HoneyUserListener;
-import org.scorpion.util.Util;
+import org.scorpion.api.HoneyAPI;
 
 import java.util.Objects;
 
@@ -55,6 +55,7 @@ public class HoneyCore extends JavaPlugin {
 
         Objects.requireNonNull(getCommand("ec")).setExecutor(new CommandEnderChest());
         Objects.requireNonNull(getCommand("enderchest")).setExecutor(new CommandEnderChest());
+        Objects.requireNonNull(getCommand("ui")).setExecutor(new CommandUI());
 
         Objects.requireNonNull(getCommand("sun")).setExecutor(new CommandSun());
         Objects.requireNonNull(getCommand("rain")).setExecutor(new CommandRain());
@@ -64,8 +65,8 @@ public class HoneyCore extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new HoneyUserListener(), this);
         getServer().getPluginManager().registerEvents(new HoneyCommandListener(), this);
 
-        Util.manageLang();
-        Util.initWarp();
+        HoneyAPI.manageLang();
+        HoneyAPI.initWarp();
     }
 
 }

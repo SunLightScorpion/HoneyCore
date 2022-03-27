@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.scorpion.util.Util;
+import org.scorpion.api.HoneyAPI;
 
 /**
  * @author Lukas on 12/23/2021
@@ -32,7 +32,7 @@ public class CommandKick implements CommandExecutor {
                     t.sendMessage("§cDu wurdest gekickt: §4" + builder);
                     t.kickPlayer("§c" + builder);
                 } else {
-                    p.sendMessage(Util.getPrefix() + "§4Spieler §7" + args[0] + " §4wurde nicht gefunden!");
+                    p.sendMessage(HoneyAPI.getPrefix() + "§4Spieler §7" + args[0] + " §4wurde nicht gefunden!");
                 }
             } else if (args.length == 1) {
                 Player t = Bukkit.getPlayer(args[0]);
@@ -41,7 +41,7 @@ public class CommandKick implements CommandExecutor {
                     t.kickPlayer("§cDu wurdest gekickt");
                 }
             } else {
-                p.sendMessage(Util.getPrefix() + "§c/kick <Spieler> <Grund>");
+                p.sendMessage(HoneyAPI.getPrefix() + "§c/kick <Spieler> <Grund>");
             }
         }
         return false;

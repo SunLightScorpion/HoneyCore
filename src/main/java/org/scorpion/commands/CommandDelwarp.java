@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.scorpion.HoneyCore;
-import org.scorpion.util.Util;
+import org.scorpion.api.HoneyAPI;
 import org.scorpion.util.command.ScorpionCommand;
 import org.scorpion.util.warp.Warp;
 
@@ -20,11 +20,11 @@ public class CommandDelwarp extends ScorpionCommand {
                     String data = args[0];
                     Warp warp = new Warp(data);
                     if (warp.existWarp()) {
-                        p.sendMessage(Util.getPrefix() + "§7You have delete the warp §c" + warp.getWarpName() + " §7!");
+                        p.sendMessage(HoneyAPI.getPrefix() + "§7You have delete the warp §c" + warp.getWarpName() + " §7!");
                         warp.delWarp();
-                        Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), Util::reloadWarps, 9);
+                        Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), HoneyAPI::reloadWarps, 9);
                     } else {
-                        p.sendMessage(Util.getPrefix() + "§cDer Warp §e[" + data + "] §cexistiert nicht!");
+                        p.sendMessage(HoneyAPI.getPrefix() + "§cDer Warp §e[" + data + "] §cexistiert nicht!");
                     }
                 }
             }

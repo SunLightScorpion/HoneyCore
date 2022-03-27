@@ -12,7 +12,7 @@ public enum Time {
     DAY(1000 * 60 * 60 * 24),
     ;
 
-    long time;
+    final long time;
 
     Time(long time) {
         this.time = time;

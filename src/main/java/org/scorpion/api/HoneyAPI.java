@@ -1,4 +1,4 @@
-package org.scorpion.util;
+package org.scorpion.api;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -6,7 +6,10 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
+import org.scorpion.user.HoneyUser;
+import org.scorpion.util.Time;
 import org.scorpion.util.file.FileManager;
+import org.scorpion.util.user.User;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,7 +27,7 @@ import java.util.regex.Pattern;
 /**
  * @author Lukas on 11/15/2021
  */
-public class Util {
+public class HoneyAPI {
 
     public final static String VERSION = "1.3-SNAPSHOT";
     protected static final LinkedList<String> warps = new LinkedList<>();
@@ -52,51 +55,47 @@ public class Util {
     }
 
     public static void manageLang() {
+        addSetting("language", "en");
+        addSetting("prefix", "&8[&eHoney&6Core&8]");
+        addSetting("hide-server-detail", true);
+        addSetting("random-teleport-range", 4000);
+        addSetting("welcome-new-player", true);
+        addSetting("permission.gamemode", "honey.gamemode");
+        addSetting("permission.gamemode-target", "honey.gamemode.target");
+        addSetting("permission.heal", "honey.heal");
+        addSetting("permission.heal-target", "honey.heal.target");
+        addSetting("permission.setspawn", "honey.setspawn");
+        addSetting("permission.admin", "honey.admin");
+        addSetting("permission.tp", "honey.tp");
+        addSetting("permission.enderchest-target", "honey.enderchest.target");
+        addSetting("permission.fly", "honey.fly");
+        addSetting("message.gamemode", "%prefix% &6Your gamemode changed to &c%gm%&6!");
+        addSetting("message.gamemode-target", "%prefix% &6The gamemode from &4%target% &6changed to &c%gm%&6!");
+        addSetting("message.player-not-found", "%prefix% &c%target% is not online!");
+        addSetting("message.heal", "%prefix% &2You are now &ahealed&2!");
+        addSetting("message.heal-target", "%prefix% &2You have healed &a%target%&2!");
+        addSetting("message.spawn", "%prefix% &2Set spawn.");
+        addSetting("message.spawn-set", "%prefix% &2Set spawn.");
+        addSetting("message.spawn-teleport", "%prefix% &2You are teleported to spawn.");
+        addSetting("message.no-permission", "%prefix% &cYou have not the permission to do that.");
+        addSetting("message.spawn-not-set", "%prefix% &cSpawn is not set.");
+        addSetting("message.welcome-new-player", "&d%player% is a new player!");
+        addSetting("join-message", "§8[§a+§8] §7%player%");
+        addSetting("quit-message", "§8[§4-§8] §7%player%");
+    }
+
+    public static User getUser(UUID id){
+        return new HoneyUser(id);
+    }
+
+    public static int getRandomTeleportRange(){
         FileManager file = new FileManager("plugins/HoneyCore/Settings.yml");
-        FileManager de = new FileManager("plugins/HoneyCore/Lang/de.yml");
-        FileManager en = new FileManager("plugins/HoneyCore/Lang/en.yml");
+        return Integer.parseInt(file.getString("random-teleport-range"));
+    }
 
-        if (!file.exist()) {
-            file.set("language", "en");
-            file.set("prefix", "&8[&eHoney&6Core&8]");
-            file.set("hide-server-detail", true);
-            file.set("permission.gamemode", "honey.gamemode");
-            file.set("permission.gamemode-target", "honey.gamemode.target");
-            file.set("permission.heal", "honey.heal");
-            file.set("permission.heal-target", "honey.heal.target");
-            file.set("permission.setspawn", "honey.setspawn");
-            file.set("permission.admin", "honey.admin");
-            file.set("permission.tp", "honey.tp");
-            file.set("permission.enderchest-target", "honey.enderchest.target");
-            file.set("permission.fly", "honey.fly");
-        }
-
-        if (!de.exist()) {
-            de.set("message.gamemode", "%prefix% &6Dein Spielmodus ist jetzt auf &c%gm%&6!");
-            de.set("message.gamemode-target", "%prefix% &6Der Spielmodus von &4%target% &6ist jetzt auf &c%gm%&6!");
-            de.set("message.player-not-found", "%prefix% &c%target% ist nicht online!");
-            de.set("message.heal", "%prefix% &2Du bist nun &ageheilt&2!");
-            de.set("message.heal-target", "%prefix% &2Du hast &a%target% &2geheilt!");
-            de.set("message.spawn-set", "%prefix% &2Spawn wurde gesetzt.");
-            de.set("message.spawn-teleport", "%prefix% &2Du wurdest zum Spawn teleportiert.");
-            de.set("message.no-permission", "%prefix% &cDu hast nicht die benötigte Rechte um es zu tun.");
-        }
-
-        if (!en.exist()) {
-            en.set("message.gamemode", "%prefix% &6Your gamemode changed to &c%gm%&6!");
-            en.set("message.gamemode-target", "%prefix% &6The gamemode from &4%target% &6changed to &c%gm%&6!");
-            en.set("message.player-not-found", "%prefix% &c%target% is not online!");
-            en.set("message.heal", "%prefix% &2You are now &ahealed&2!");
-            en.set("message.heal-target", "%prefix% &2You have healed &a%target%&2!");
-            en.set("message.spawn", "%prefix% &2Set spawn.");
-            en.set("message.spawn-set", "%prefix% &2Set spawn.");
-            en.set("message.spawn-teleport", "%prefix% &2You are teleported to spawn.");
-            en.set("message.no-permission", "%prefix% &cYou have not the permission to do that.");
-        }
-
-        file.save();
-        de.save();
-        en.save();
+    public static boolean welcomeNewPlayer(){
+        FileManager file = new FileManager("plugins/HoneyCore/Settings.yml");
+        return file.getBoolean("welcome-new-player");
     }
 
     public static void reloadWarps() {
@@ -144,9 +143,9 @@ public class Util {
     private static Location generateRandomLocation() {
         var world = Bukkit.getWorld("world");
         Random random = new Random();
-        int x = random.nextInt(4000) + 200;
+        int x = random.nextInt(getRandomTeleportRange()) + 200;
         int y = 150;
-        int z = random.nextInt(4000) + 200;
+        int z = random.nextInt(getRandomTeleportRange()) + 200;
         Location loc = new Location(world, x, y, z);
 
         var ocean = loc.getBlock().getBiome().getKey().getKey().contains("ocean")
@@ -257,9 +256,12 @@ public class Util {
 
     public static String getMessage(String path) {
         FileManager file = new FileManager("plugins/HoneyCore/Settings.yml");
-        var lang = file.getString("language").toLowerCase();
-        FileManager currentLangData = new FileManager("plugins/HoneyCore/Lang/" + lang + ".yml");
-        return currentLangData.getString(path).replace("%prefix%", file.getString("prefix"));
+        return file.getString(path).replace("%prefix%", file.getString("prefix"));
+    }
+
+    public static String getMessage(String path, String player) {
+        FileManager file = new FileManager("plugins/HoneyCore/Settings.yml");
+        return file.getString(path).replace("%prefix%", file.getString("prefix")).replace("%player%", player);
     }
 
     public static String getPermission(String permission) {

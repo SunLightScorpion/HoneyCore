@@ -8,16 +8,15 @@ import org.jetbrains.annotations.NotNull;
 import org.scorpion.api.HoneyAPI;
 
 /**
- * @author Lukas on 3/22/2022
+ * @author Lukas on 3/27/2022
  */
-public class CommandPing implements CommandExecutor {
+public class CommandUI implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(sender instanceof Player p){
-            p.sendMessage(HoneyAPI.getPrefix()+"§aPing: §2"+p.getPing()+"ms");
+            p.openInventory(HoneyAPI.getUser(p.getUniqueId()).getUserInterface().getUserInterface(p));
         }
         return false;
     }
-
 }

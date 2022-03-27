@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.scorpion.user.HoneyUser;
-import org.scorpion.util.Util;
+import org.scorpion.api.HoneyAPI;
 import org.scorpion.util.command.ScorpionCommand;
 
 public class CommandDeleteHome extends ScorpionCommand {
@@ -18,13 +18,13 @@ public class CommandDeleteHome extends ScorpionCommand {
                 var data = args[0];
 
                 if (!user.existHome(data)) {
-                    p.sendMessage(Util.getPrefix() + "§4Home do not exist");
+                    p.sendMessage(HoneyAPI.getPrefix() + "§4Home do not exist");
                     return false;
                 }
 
                 user.removeLocation(data);
                 user.removeHome(data);
-                p.sendMessage(Util.getPrefix() + "§cDelete home " + data);
+                p.sendMessage(HoneyAPI.getPrefix() + "§cDelete home " + data);
             }
         }
         return false;

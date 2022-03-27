@@ -4,7 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.scorpion.util.Util;
+import org.scorpion.api.HoneyAPI;
 
 public class CommandSun implements CommandExecutor {
 
@@ -16,7 +16,7 @@ public class CommandSun implements CommandExecutor {
             }
             p.getWorld().setThundering(false);
             p.getWorld().setStorm(false);
-            p.sendMessage(Util.getPrefix() + " §aEs scheint nun die schöne Sonne!");
+            p.sendMessage(HoneyAPI.getPrefix() + " §aSun!");
         }
         return false;
     }

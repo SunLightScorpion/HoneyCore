@@ -4,7 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.scorpion.util.Util;
+import org.scorpion.api.HoneyAPI;
 
 public class CommandDay implements CommandExecutor {
 
@@ -15,7 +15,7 @@ public class CommandDay implements CommandExecutor {
                 return true;
             }
             p.getWorld().setTime(1000);
-            p.sendMessage(Util.getPrefix() + " §4Die Zeit wurde auf Tag gestellt!");
+            p.sendMessage(HoneyAPI.getPrefix() + " §4Die Zeit wurde auf Tag gestellt!");
         }
         return false;
     }

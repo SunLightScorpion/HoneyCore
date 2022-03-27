@@ -7,7 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.scorpion.util.Util;
+import org.scorpion.api.HoneyAPI;
 
 import java.util.Random;
 
@@ -19,12 +19,12 @@ public class CommandTeleport implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player p) {
-            if (p.hasPermission(Util.getPermission("tp"))) {
+            if (p.hasPermission(HoneyAPI.getPermission("tp"))) {
                 if (args.length == 1) {
                     Player t = Bukkit.getPlayer(args[0]);
                     if (t != null) {
                         p.teleport(t);
-                        p.sendMessage(Util.getPrefix() + "§7Du hast dich zu §e" + t.getName() + " §7teleportiert!");
+                        p.sendMessage(HoneyAPI.getPrefix() + "§7Teleport to §e" + t.getName() + " §7!");
                     }
                 } else if (args.length == 2) {
                     Player t = Bukkit.getPlayer(args[0]);
@@ -36,7 +36,7 @@ public class CommandTeleport implements CommandExecutor {
                         return false;
                     }
                     t.teleport(t2);
-                    p.sendMessage("§7Du hast §c" + t.getName() + " §7zu §c" + t2.getName() + " §7teleportiert!");
+                    p.sendMessage("§c" + t.getName() + " §7to §c" + t2.getName() + " §7!");
                 } else if (args.length == 3) {
                     try {
                         double x = Double.parseDouble(args[0]);
@@ -44,7 +44,7 @@ public class CommandTeleport implements CommandExecutor {
                         double z = Double.parseDouble(args[2]);
                         Location loc = new Location(p.getWorld(), x, y, z, p.getLocation().getYaw(), p.getLocation().getPitch());
                         p.teleport(loc);
-                        p.sendMessage(Util.getPrefix() + "§7Du hast dich zu §c" + x + "§7, §c" + y + "§7, §c" + z + " §7teleportiert!");
+                        p.sendMessage(HoneyAPI.getPrefix() + "§7Teleported to §c" + x + "§7, §c" + y + "§7, §c" + z + " §7!");
                     } catch (NumberFormatException ignored) {
                     }
                 } else if (args.length == 4) {
@@ -54,21 +54,21 @@ public class CommandTeleport implements CommandExecutor {
                         double z = Double.parseDouble(args[2]);
                         String world = args[3];
                         if (Bukkit.getWorld(world) == null) {
-                            p.sendMessage(Util.getPrefix() + "§4Die Welt konnte nicht gefunden werden!");
+                            p.sendMessage(HoneyAPI.getPrefix() + "§4The world can't fount");
                             return false;
                         }
                         Location loc = new Location(Bukkit.getWorld(world), x, y, z, p.getLocation().getYaw(), p.getLocation().getPitch());
                         p.teleport(loc);
-                        p.sendMessage(Util.getPrefix() + "§7Du hast dich zu §c" + x + "§7, §c" + y + "§7, §c" + z + "§7, §c" + world + " §7teleportiert!");
+                        p.sendMessage(HoneyAPI.getPrefix() + "§7You have teleported to §c" + x + "§7, §c" + y + "§7, §c" + z + "§7, §c" + world + " §7!");
                     } catch (NumberFormatException ignored) {
                     }
                 } else if (args.length == 0) {
                     Player random = (Player) Bukkit.getOnlinePlayers().toArray()[new Random().nextInt(Bukkit.getOnlinePlayers().size())];
                     p.teleport(random);
-                    p.sendMessage(Util.getPrefix() + "§7Du hast dich zu §c" + random.getName() + " §7teleportiert!");
+                    p.sendMessage(HoneyAPI.getPrefix() + "§7You teleported to §c" + random.getName() + " §7!");
                 }
             } else {
-                Util.sendNoPermission(p);
+                HoneyAPI.sendNoPermission(p);
             }
         }
         return false;

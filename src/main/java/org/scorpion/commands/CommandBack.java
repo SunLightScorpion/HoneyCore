@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.scorpion.user.HoneyUser;
-import org.scorpion.util.Util;
+import org.scorpion.api.HoneyAPI;
 
 /**
  * @author Lukas on 12/22/2021
@@ -19,7 +19,7 @@ public class CommandBack implements CommandExecutor {
             var user = new HoneyUser(p.getUniqueId());
 
             if(user.getDeathPoint() == null){
-                p.teleport(Util.getSpawn());
+                p.teleport(HoneyAPI.getSpawn());
             } else{
                 p.teleport(user.getDeathPoint());
             }

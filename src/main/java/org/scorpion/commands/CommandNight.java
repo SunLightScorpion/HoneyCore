@@ -4,7 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.scorpion.util.Util;
+import org.scorpion.api.HoneyAPI;
 
 public class CommandNight implements CommandExecutor {
 
@@ -15,7 +15,7 @@ public class CommandNight implements CommandExecutor {
                 return true;
             }
             p.getWorld().setTime(18000);
-            p.sendMessage(Util.getPrefix() + " §cDie Zeit wurde auf Nacht gesetzt!");
+            p.sendMessage(HoneyAPI.getPrefix() + " §cDie Zeit wurde auf Nacht gesetzt!");
         }
         return false;
     }

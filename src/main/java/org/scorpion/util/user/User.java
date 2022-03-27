@@ -1,6 +1,8 @@
 package org.scorpion.util.user;
 
 import org.bukkit.Location;
+import org.scorpion.user.inventory.UserInterface;
+import org.scorpion.util.Time;
 
 import java.util.List;
 
@@ -34,5 +36,11 @@ public interface User {
     void setDeathPoint(Location location);
 
     Location getDeathPoint();
+
+    void ban(String reason, long ms, Time time);
+
+    boolean isBanned();
+
+    UserInterface getUserInterface();
 
 }

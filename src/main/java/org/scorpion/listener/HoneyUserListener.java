@@ -5,12 +5,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.scorpion.HoneyCore;
 import org.scorpion.user.HoneyUser;
-import org.scorpion.util.Util;
+import org.scorpion.api.HoneyAPI;
 import org.scorpion.util.user.User;
 
 /**
@@ -22,23 +23,44 @@ public class HoneyUserListener implements Listener {
     public void on(PlayerJoinEvent e) {
         Player p = e.getPlayer();
         User user = new HoneyUser(p.getUniqueId());
-        e.setJoinMessage("§8[§a+§8] §7"+p.getName());
+        e.setJoinMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("join-message", p.getName())));
 
         Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), user::createUser, 5);
 
+        if(HoneyAPI.getSpawn() == null){
+            p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.spawn-not-set")));
+        }
+
         Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), () -> {
             if (p.hasPermission("honey.notify")) {
-                if (Util.needUpdate(Util.VERSION) && !Util.isSnapshot(Util.VERSION)) {
-                    p.sendMessage(Util.getPrefix() + "§cUpdate: §6https://www.spigotmc.org/resources/honeycore-coresystem.97646/");
-                } else if (Util.needUpdate(Util.VERSION) && Util.isSnapshot(Util.VERSION)) {
-                    p.sendMessage(Util.getPrefix() + "§4SNAPSHOT VERSION! (" + Util.VERSION + ")");
-                    p.sendMessage(Util.getPrefix() + "§7Current version: §a" + Util.getPluginVersion());
-                    p.sendMessage(Util.getPrefix() + "§cUpdate: §6https://www.spigotmc.org/resources/honeycore-coresystem.97646/");
+                if (HoneyAPI.needUpdate(HoneyAPI.VERSION) && !HoneyAPI.isSnapshot(HoneyAPI.VERSION)) {
+                    p.sendMessage(HoneyAPI.getPrefix() + "§cUpdate: §6https://www.spigotmc.org/resources/honeycore-coresystem.97646/");
+                } else if (HoneyAPI.needUpdate(HoneyAPI.VERSION) && HoneyAPI.isSnapshot(HoneyAPI.VERSION)) {
+                    p.sendMessage(HoneyAPI.getPrefix() + "§4SNAPSHOT VERSION! (" + HoneyAPI.VERSION + ")");
+                    p.sendMessage(HoneyAPI.getPrefix() + "§7Current version: §a" + HoneyAPI.getPluginVersion());
+                    p.sendMessage(HoneyAPI.getPrefix() + "§cUpdate: §6https://www.spigotmc.org/resources/honeycore-coresystem.97646/");
                 } else {
-                    p.sendMessage(Util.getPrefix() + "§aNo updates found");
+                    p.sendMessage(HoneyAPI.getPrefix() + "§aNo updates found");
                 }
             }
         }, 20 * 3);
+    }
+
+    @EventHandler
+    public void on(InventoryClickEvent e){
+        if(e.getCurrentItem() == null){
+            return;
+        }
+        if(e.getClickedInventory() == null){
+            return;
+        }
+
+        var view = e.getView();
+
+        if(view.getTitle().equalsIgnoreCase("§a/ui - User Info")){
+            e.setCancelled(true);
+        }
+
     }
 
     @EventHandler
@@ -52,14 +74,14 @@ public class HoneyUserListener implements Listener {
     public void on(PlayerRespawnEvent e){
         Player p = e.getPlayer();
         Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), () -> {
-            p.teleport(Util.getSpawn());
+            p.teleport(HoneyAPI.getSpawn());
         }, 5);
     }
 
     @EventHandler
     public void on(PlayerQuitEvent e){
         Player p = e.getPlayer();
-        e.setQuitMessage("§8[§4-§8] §7"+p.getName());
+        e.setQuitMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("quit-message", p.getName())));
     }
 
 }

@@ -3,7 +3,7 @@ package org.scorpion.util.warp;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.scorpion.util.Util;
+import org.scorpion.api.HoneyAPI;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,7 +36,7 @@ public class Warp {
             data.save(file);
         } catch (IOException ignored) {
         }
-        Util.reloadWarps();
+        HoneyAPI.reloadWarps();
     }
 
     public void delWarp() {

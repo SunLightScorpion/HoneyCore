@@ -4,7 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.scorpion.util.Util;
+import org.scorpion.api.HoneyAPI;
 
 public class CommandRain implements CommandExecutor {
 
@@ -15,7 +15,7 @@ public class CommandRain implements CommandExecutor {
                 return true;
             }
             p.getWorld().setStorm(true);
-            p.sendMessage(Util.getPrefix() + " §cEs erscheint Regen!");
+            p.sendMessage(HoneyAPI.getPrefix() + " §cEs erscheint Regen!");
         }
         return false;
     }

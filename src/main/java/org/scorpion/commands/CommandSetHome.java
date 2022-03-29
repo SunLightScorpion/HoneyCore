@@ -17,17 +17,17 @@ public class CommandSetHome extends ScorpionCommand {
                 var user = HoneyAPI.getUser(p.getUniqueId());
 
                 if (data.equalsIgnoreCase(p.getName())) {
-                    p.sendMessage(HoneyAPI.getPrefix() + "§cYou do not allowed to use the username for a home name!");
+                    p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.home-username-error")));
                     return false;
                 }
 
                 if (user.getHomes().size() >= user.getMaxHomes()) {
                     if (user.getHomes().contains(data)) {
                         user.saveLocation(data, p.getLocation());
-                        p.sendMessage(HoneyAPI.getPrefix() + "§aHome set");
+                        p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.home-set")));
                         return false;
                     }
-                    p.sendMessage(HoneyAPI.getPrefix() + "§cYou have reached the max size of homes!");
+                    p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.home-max")));
                     return false;
                 }
                 user.addHome(data);

@@ -15,7 +15,7 @@ public class CommandNight implements CommandExecutor {
                 return true;
             }
             p.getWorld().setTime(18000);
-            p.sendMessage(HoneyAPI.getPrefix() + " §cDie Zeit wurde auf Nacht gesetzt!");
+            p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.time-night")));
         }
         return false;
     }

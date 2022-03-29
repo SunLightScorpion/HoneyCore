@@ -15,7 +15,7 @@ public class CommandDay implements CommandExecutor {
                 return true;
             }
             p.getWorld().setTime(1000);
-            p.sendMessage(HoneyAPI.getPrefix() + " §4Die Zeit wurde auf Tag gestellt!");
+            p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.time-day")));
         }
         return false;
     }

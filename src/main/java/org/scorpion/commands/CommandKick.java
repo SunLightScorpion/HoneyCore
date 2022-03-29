@@ -17,7 +17,7 @@ public class CommandKick implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(sender instanceof Player p){
             StringBuilder builder = new StringBuilder();
-            if (!p.hasPermission("api.kick")) {
+            if (!p.hasPermission(HoneyAPI.getPermission("kick"))) {
                 return false;
             }
             if (args.length > 1) {
@@ -29,19 +29,18 @@ public class CommandKick implements CommandExecutor {
                 Player t = Bukkit.getPlayer(args[0]);
                 if (t != null) {
                     builder.setLength(msg.length() - 1);
-                    t.sendMessage("§cDu wurdest gekickt: §4" + builder);
                     t.kickPlayer("§c" + builder);
                 } else {
-                    p.sendMessage(HoneyAPI.getPrefix() + "§4Spieler §7" + args[0] + " §4wurde nicht gefunden!");
+                    p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.player-not-found").replace("%target%", args[0])));
                 }
             } else if (args.length == 1) {
                 Player t = Bukkit.getPlayer(args[0]);
                 if (t != null) {
-                    t.sendMessage("§cDu wurdest gekickt");
-                    t.kickPlayer("§cDu wurdest gekickt");
+                    t.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.kick")));
+                    t.kickPlayer(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.kick")));
                 }
             } else {
-                p.sendMessage(HoneyAPI.getPrefix() + "§c/kick <Spieler> <Grund>");
+                p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.kick-syntax")));
             }
         }
         return false;

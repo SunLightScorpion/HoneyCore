@@ -20,11 +20,11 @@ public class CommandDelwarp extends ScorpionCommand {
                     String data = args[0];
                     Warp warp = new Warp(data);
                     if (warp.existWarp()) {
-                        p.sendMessage(HoneyAPI.getPrefix() + "§7You have delete the warp §c" + warp.getWarpName() + " §7!");
+                        p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.warp-delete").replace("%warp%", warp.getWarpName())));
                         warp.delWarp();
                         Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), HoneyAPI::reloadWarps, 9);
                     } else {
-                        p.sendMessage(HoneyAPI.getPrefix() + "§cDer Warp §e[" + data + "] §cexistiert nicht!");
+                        p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.warp-not-exist").replace("%warp%", args[0])));
                     }
                 }
             }

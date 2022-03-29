@@ -11,12 +11,12 @@ public class CommandSun implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player p) {
-            if (!p.hasPermission("core.sun")) {
+            if (!p.hasPermission(HoneyAPI.getPermission("sun"))) {
                 return true;
             }
             p.getWorld().setThundering(false);
             p.getWorld().setStorm(false);
-            p.sendMessage(HoneyAPI.getPrefix() + " §aSun!");
+            p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.weather-sun")));
         }
         return false;
     }

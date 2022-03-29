@@ -1,6 +1,7 @@
 package org.scorpion.listener;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,6 +10,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.inventory.ItemStack;
 import org.scorpion.HoneyCore;
 import org.scorpion.user.HoneyUser;
 import org.scorpion.api.HoneyAPI;
@@ -59,6 +61,19 @@ public class HoneyUserListener implements Listener {
 
         if(view.getTitle().equalsIgnoreCase("§a/ui - User Info")){
             e.setCancelled(true);
+
+            ItemStack item = e.getCurrentItem();
+            Player p = (Player) e.getWhoClicked();
+
+            if(item.getType() == Material.LIME_BED){
+                var display = item.getItemMeta().getDisplayName().replace("§a", "");
+
+                p.teleport(HoneyAPI.getUser(p.getUniqueId()).getHome(display));
+                p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.home-teleport").replace("%home%", display)));
+            }
+            if(item.getType() == Material.CRAFTING_TABLE){
+                p.openWorkbench(null, true);
+            }
         }
 
     }

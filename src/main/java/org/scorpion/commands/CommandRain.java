@@ -15,7 +15,7 @@ public class CommandRain implements CommandExecutor {
                 return true;
             }
             p.getWorld().setStorm(true);
-            p.sendMessage(HoneyAPI.getPrefix() + " §cEs erscheint Regen!");
+            p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.weather-rain")));
         }
         return false;
     }

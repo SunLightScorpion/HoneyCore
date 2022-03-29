@@ -46,13 +46,13 @@ public class CommandWarp extends ScorpionCommand implements TabCompleter {
                 Warp warp = new Warp(data);
                 if (warp.existWarp()) {
                     if (warp.getLocation().getWorld() == null) {
-                        p.sendMessage(HoneyAPI.getPrefix() + "§cWorld not found");
+                        p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.world-not-found")));
                         return false;
                     }
                     warp.teleport(p);
-                    p.sendMessage(HoneyAPI.getPrefix() + "§7You teleported to warp §6" + warp.getWarpName() + "§7!");
+                    p.sendMessage(HoneyAPI.getMessage(HoneyAPI.getMessage("message.warp-teleport").replace("%warp%", warp.getWarpName())));
                 } else {
-                    p.sendMessage(HoneyAPI.getPrefix() + "§cWarp §e[" + data + "] §cdo not exist!");
+                    p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.warp-not-exist").replace("%warp%", args[0])));
                 }
             }
         }

@@ -13,12 +13,12 @@ public class CommandSetWarp extends ScorpionCommand {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player p) {
-            if (p.hasPermission("api.setwarp")) {
+            if (p.hasPermission(HoneyAPI.getPermission("setwarp"))) {
                 if (args.length == 1) {
                     String data = args[0];
                     Warp warp = new Warp(data);
                     warp.setWarp(p.getLocation());
-                    p.sendMessage(HoneyAPI.getPrefix() + "§7You have set the warp §a" + warp.getWarpName() + "§7!");
+                    p.sendMessage(HoneyAPI.getMessage(HoneyAPI.getMessage("message.warp-set").replace("%warp%", warp.getWarpName())));
                 }
             }
         }

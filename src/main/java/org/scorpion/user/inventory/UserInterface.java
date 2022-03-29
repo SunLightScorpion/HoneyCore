@@ -27,6 +27,14 @@ public class UserInterface {
             inv.setItem(1+j, new ItemBuilder(Material.WHITE_BED).setName("§c-").build());
         }
 
+        if(HoneyAPI.getUser(p.getUniqueId()).getHomes().size() > 0){
+            for(int h = 0; h < HoneyAPI.getUser(p.getUniqueId()).getHomes().size(); h++){
+                inv.setItem(1+h, new ItemBuilder(Material.LIME_BED).setName("§a"+HoneyAPI.getUser(p.getUniqueId()).getHomes().get(h)).build());
+            }
+        }
+
+        inv.setItem(26, new ItemBuilder(Material.CRAFTING_TABLE).setName("§aCrafting").build());
+
         return inv;
     }
 

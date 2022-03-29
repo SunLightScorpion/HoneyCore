@@ -69,6 +69,10 @@ public class HoneyAPI {
         addSetting("permission.tp", "honey.tp");
         addSetting("permission.enderchest-target", "honey.enderchest.target");
         addSetting("permission.fly", "honey.fly");
+        addSetting("permission.setwarp", "honey.setwarp");
+        addSetting("permission.sun", "honey.sun");
+        addSetting("permission.kick", "honey.kick");
+        addSetting("permission.rtp-bypass", "honey.rtp.bypass");
         addSetting("message.gamemode", "%prefix% &6Your gamemode changed to &c%gm%&6!");
         addSetting("message.gamemode-target", "%prefix% &6The gamemode from &4%target% &6changed to &c%gm%&6!");
         addSetting("message.player-not-found", "%prefix% &c%target% is not online!");
@@ -80,6 +84,26 @@ public class HoneyAPI {
         addSetting("message.no-permission", "%prefix% &cYou have not the permission to do that.");
         addSetting("message.spawn-not-set", "%prefix% &cSpawn is not set.");
         addSetting("message.welcome-new-player", "&d%player% is a new player!");
+        addSetting("message.home-teleport", "%prefix% §aYou teleported to home §b%home%§a!");
+        addSetting("message.home-not-exist", "%prefix% §4Home do not exist!");
+        addSetting("message.home-delete", "%prefix% §cDelete home %home%");
+        addSetting("message.home-username-error", "%prefix% §cYou do not allowed to use the username for a home name!");
+        addSetting("message.home-set", "%prefix% §aHome set");
+        addSetting("message.home-max", "%prefix% §cYou have reached the max size of homes!");
+        addSetting("message.weather-sun", "%prefix% §aThe sun shines now!");
+        addSetting("message.weather-rain", "%prefix% §cIt will rain now!");
+        addSetting("message.time-night", "%prefix% §9The time was set to night!");
+        addSetting("message.time-day", "%prefix% §aThe time was set to day!");
+        addSetting("message.warp-not-exist", "%prefix% §cThe warp §e%warp% §cexists not!");
+        addSetting("message.warp-delete", "%prefix% §7You have delete the warp §c%warp%§7!");
+        addSetting("message.warp-set", "%prefix% §7You have set the warp §a%warp%§7!");
+        addSetting("message.warp-teleport", "%prefix% §7You teleported to warp §6%warp%§7!");
+        addSetting("message.world-not-found", "%prefix% §cWorld not found");
+        addSetting("message.fly-state", "%prefix% §c§7Fly: §e%state%");
+        addSetting("message.fly-state-target", "%prefix% §c§7Fly: §e%state% §8| §6%target%");
+        addSetting("message.kick", "§cYou were kicked!");
+        addSetting("message.kick-syntax", "%prefix% §c/kick <Spieler> <Grund>!");
+        addSetting("message.rtp-deny", "%prefix% §cYou can't teleport because the cooldown hasn't worn off! (500 seconds total)");
         addSetting("join-message", "§8[§a+§8] §7%player%");
         addSetting("quit-message", "§8[§4-§8] §7%player%");
     }
@@ -129,9 +153,9 @@ public class HoneyAPI {
     }
 
     public static void randomTeleportPlayer(Player p) {
-        if (!p.hasPermission("api.rtp.bypass")) {
+        if (!p.hasPermission(HoneyAPI.getPermission("rtp-bypass"))) {
             if (canRTP(p.getUniqueId())) {
-                p.sendMessage(getPrefix() + "");
+                p.sendMessage(getColorCode(getMessage("message.rtp-deny")));
                 return;
             }
             saveRandomTPActionTime(p.getUniqueId());

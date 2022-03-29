@@ -36,11 +36,11 @@ public class HoneyUserListener implements Listener {
         Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), () -> {
             if (p.hasPermission("honey.notify")) {
                 if (HoneyAPI.needUpdate(HoneyAPI.VERSION) && !HoneyAPI.isSnapshot(HoneyAPI.VERSION)) {
-                    p.sendMessage(HoneyAPI.getPrefix() + "§cUpdate: §6https://www.spigotmc.org/resources/honeycore-coresystem.97646/");
+                    p.sendMessage(HoneyAPI.getPrefix() + "§cUpdate: §6https://www.mc-market.org/resources/23350/");
                 } else if (HoneyAPI.needUpdate(HoneyAPI.VERSION) && HoneyAPI.isSnapshot(HoneyAPI.VERSION)) {
                     p.sendMessage(HoneyAPI.getPrefix() + "§4SNAPSHOT VERSION! (" + HoneyAPI.VERSION + ")");
                     p.sendMessage(HoneyAPI.getPrefix() + "§7Current version: §a" + HoneyAPI.getPluginVersion());
-                    p.sendMessage(HoneyAPI.getPrefix() + "§cUpdate: §6https://www.spigotmc.org/resources/honeycore-coresystem.97646/");
+                    p.sendMessage(HoneyAPI.getPrefix() + "§cUpdate: §6https://www.mc-market.org/resources/23350/");
                 } else {
                     p.sendMessage(HoneyAPI.getPrefix() + "§aNo updates found");
                 }

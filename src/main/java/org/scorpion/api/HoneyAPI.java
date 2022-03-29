@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
  */
 public class HoneyAPI {
 
-    public final static String VERSION = "1.3-SNAPSHOT";
+    public final static String VERSION = "1.3";
     protected static final LinkedList<String> warps = new LinkedList<>();
     protected static final HashMap<Player, Player> tpa = new HashMap<>();
     protected static final HashMap<Player, Player> tpaHere = new HashMap<>();
@@ -55,7 +55,6 @@ public class HoneyAPI {
     }
 
     public static void manageLang() {
-        addSetting("language", "en");
         addSetting("prefix", "&8[&eHoney&6Core&8]");
         addSetting("hide-server-detail", true);
         addSetting("random-teleport-range", 4000);

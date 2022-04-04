@@ -16,6 +16,8 @@ import org.scorpion.user.HoneyUser;
 import org.scorpion.api.HoneyAPI;
 import org.scorpion.util.user.User;
 
+import java.util.Objects;
+
 /**
  * @author Lukas on 11/24/2021
  */
@@ -65,10 +67,13 @@ public class HoneyUserListener implements Listener {
             Player p = (Player) e.getWhoClicked();
 
             if(item.getType() == Material.LIME_BED){
-                var display = item.getItemMeta().getDisplayName().replace("§a", "");
+                var display = Objects.requireNonNull(item.getItemMeta()).getDisplayName().replace("§a", "");
 
                 p.teleport(HoneyAPI.getUser(p.getUniqueId()).getHome(display));
                 p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.home-teleport").replace("%home%", display)));
+            }
+            if(item.getType() == Material.ENDER_CHEST){
+                p.openInventory(p.getEnderChest());
             }
             if(item.getType() == Material.CRAFTING_TABLE){
                 p.openWorkbench(null, true);

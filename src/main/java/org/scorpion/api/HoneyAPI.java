@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
  */
 public class HoneyAPI {
 
-    public final static String VERSION = "1.3.1";
+    public final static String VERSION = "1.5-SNAPSHOT";
     protected static final LinkedList<String> warps = new LinkedList<>();
     protected static final HashMap<Player, Player> tpa = new HashMap<>();
     protected static final HashMap<Player, Player> tpaHere = new HashMap<>();
@@ -216,8 +216,8 @@ public class HoneyAPI {
         if (tpaHere.containsKey(target)) {
             Player sender = tpaHere.get(target);
             target.teleport(sender);
-            sender.sendMessage(getPrefix() + "§e" + target.getName() + " §7hat die Teleport Anfrage angemommen!");
-            target.sendMessage(getPrefix() + "§aDu hast die Anfrage angenommen!");
+            sender.sendMessage(getPrefix() + "§e" + target.getName() + " §7has accepted the teleport request!");
+            target.sendMessage(getPrefix() + "§aYou have accepted the request!");
             tpaHere.remove(target);
         } else {
             target.sendMessage(getPrefix() + "§cYou have not a request!");
@@ -227,7 +227,7 @@ public class HoneyAPI {
     public static void denyTPA(Player target) {
         if (tpa.containsKey(target)) {
             Player sender = tpa.get(target);
-            sender.sendMessage(getPrefix() + "§cDeine Teleport Anfrage wurde abgelehnt!");
+            sender.sendMessage(getPrefix() + "§cYour teleport request was rejected!");
             tpa.remove(target);
         } else {
             target.sendMessage(getPrefix() + "§cYou have not a request!");
@@ -236,8 +236,8 @@ public class HoneyAPI {
 
     public static void sendTPA(Player sender, Player target) {
         tpa.put(target, sender);
-        sender.sendMessage(getPrefix() + "§7Du hast eine Teleport Anfrage an §c" + target.getName() + " §7gesendet!");
-        target.sendMessage(getPrefix() + "§7Du hast eine Teleport Anfrage erhalten von §c" + sender.getName() + "§7!");
+        sender.sendMessage(getPrefix() + "§7You have sent a teleport request to §c" + target.getName() + " §7!");
+        target.sendMessage(getPrefix() + "§7You have received a teleport request from §c" + sender.getName() + "§7!");
     }
 
     private static Object getWebData(String u, String data) {

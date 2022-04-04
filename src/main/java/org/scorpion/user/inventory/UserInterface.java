@@ -34,6 +34,7 @@ public class UserInterface {
         }
 
         inv.setItem(26, new ItemBuilder(Material.CRAFTING_TABLE).setName("§aCrafting").build());
+        inv.setItem(25, new ItemBuilder(Material.ENDER_CHEST).setName("§5Enderchest").build());
 
         return inv;
     }

@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
  */
 public class HoneyAPI {
 
-    public final static String VERSION = "1.5-SNAPSHOT";
+    public final static String VERSION = "1.5";
     protected static final LinkedList<String> warps = new LinkedList<>();
     protected static final HashMap<Player, Player> tpa = new HashMap<>();
     protected static final HashMap<Player, Player> tpaHere = new HashMap<>();
@@ -255,11 +255,11 @@ public class HoneyAPI {
     }
 
     public static String getPluginVersion() {
-        return getWebData("http://playscorpion.de/honey_version.json", "plugin").toString();
+        return getWebData("https://sunlightscorpion.de/honey.json", "plugin").toString();
     }
 
     public static boolean needUpdate(String version) {
-        String current = getWebData("http://playscorpion.de/honey_version.json", "plugin").toString();
+        String current = getWebData("https://sunlightscorpion.de/honey.json", "plugin").toString();
         return !current.equalsIgnoreCase(version);
     }
 

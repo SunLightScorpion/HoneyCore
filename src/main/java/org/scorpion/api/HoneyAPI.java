@@ -153,7 +153,7 @@ public class HoneyAPI {
 
     public static void randomTeleportPlayer(Player p) {
         if (!p.hasPermission(HoneyAPI.getPermission("rtp-bypass"))) {
-            if (canRTP(p.getUniqueId())) {
+            if (!canRTP(p.getUniqueId())) {
                 p.sendMessage(getColorCode(getMessage("message.rtp-deny")));
                 return;
             }

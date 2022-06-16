@@ -19,6 +19,10 @@ public class CommandSeen implements CommandExecutor {
                     OfflinePlayer t = Bukkit.getOfflinePlayer(args[0]);
                     HoneyUser user = new HoneyUser(p.getUniqueId());
 
+                    if (t == null) {
+                        return true;
+                    }
+
                     if (t.isOnline()) {
                         p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.seen-target-online").replace("%target%", args[0]).replace("%time%", user.getOnlineTime())));
                     } else {

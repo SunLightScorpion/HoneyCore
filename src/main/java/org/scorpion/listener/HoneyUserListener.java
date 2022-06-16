@@ -31,10 +31,6 @@ public class HoneyUserListener implements Listener {
 
         Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), user::createUser, 5);
 
-        if(HoneyAPI.getSpawn() == null){
-            p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.spawn-not-set")));
-        }
-
         Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), () -> {
             if (p.hasPermission("honey.notify")) {
                 if (HoneyAPI.needUpdate(HoneyAPI.VERSION) && !HoneyAPI.isSnapshot(HoneyAPI.VERSION)) {

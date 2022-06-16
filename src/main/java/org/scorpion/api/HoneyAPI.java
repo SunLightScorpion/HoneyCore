@@ -72,6 +72,8 @@ public class HoneyAPI {
         addSetting("permission.sun", "honey.sun");
         addSetting("permission.kick", "honey.kick");
         addSetting("permission.rtp-bypass", "honey.rtp.bypass");
+        addSetting("permission.glow", "honey.glow");
+        addSetting("permission.glow-target", "honey.glow.target");
         addSetting("message.gamemode", "%prefix% &6Your gamemode changed to &c%gm%&6!");
         addSetting("message.gamemode-target", "%prefix% &6The gamemode from &4%target% &6changed to &c%gm%&6!");
         addSetting("message.player-not-found", "%prefix% &c%target% is not online!");
@@ -101,7 +103,9 @@ public class HoneyAPI {
         addSetting("message.fly-state", "%prefix% §c§7Fly: §e%state%");
         addSetting("message.fly-state-target", "%prefix% §c§7Fly: §e%state% §8| §6%target%");
         addSetting("message.kick", "§cYou were kicked!");
-        addSetting("message.kick-syntax", "%prefix% §c/kick <Spieler> <Grund>!");
+        addSetting("message.kick-syntax", "%prefix% §c/kick <Player> <Reason>!");
+        addSetting("message.glow", "%prefix% §7Glow: §e%state%");
+        addSetting("message.glow-target", "%prefix% §7Glow: §e%state% §8| §6%target%");
         addSetting("message.rtp-deny", "%prefix% §cYou can't teleport because the cooldown hasn't worn off! (500 seconds total)");
         addSetting("join-message", "§8[§a+§8] §7%player%");
         addSetting("quit-message", "§8[§4-§8] §7%player%");

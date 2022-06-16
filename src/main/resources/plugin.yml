@@ -36,3 +36,4 @@ commands:
   kick:
   ping:
   ui:
+  glow:

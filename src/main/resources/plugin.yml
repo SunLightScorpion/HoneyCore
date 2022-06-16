@@ -37,3 +37,4 @@ commands:
   ping:
   ui:
   glow:
+  seen:

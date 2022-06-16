@@ -47,6 +47,8 @@ public class HoneyUserListener implements Listener {
                 }
             }
         }, 20 * 3);
+
+        user.setOnlineTime();
     }
 
     @EventHandler
@@ -100,7 +102,9 @@ public class HoneyUserListener implements Listener {
     @EventHandler
     public void on(PlayerQuitEvent e){
         Player p = e.getPlayer();
+        HoneyUser user = new HoneyUser(p.getUniqueId());
         e.setQuitMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("quit-message", p.getName())));
+        user.setOnlineTime();
     }
 
 }

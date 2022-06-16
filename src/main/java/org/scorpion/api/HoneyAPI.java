@@ -17,10 +17,8 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.text.DecimalFormat;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Random;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -74,6 +72,7 @@ public class HoneyAPI {
         addSetting("permission.rtp-bypass", "honey.rtp.bypass");
         addSetting("permission.glow", "honey.glow");
         addSetting("permission.glow-target", "honey.glow.target");
+        addSetting("permission.seen-target", "honey.seen.target");
         addSetting("message.gamemode", "%prefix% &6Your gamemode changed to &c%gm%&6!");
         addSetting("message.gamemode-target", "%prefix% &6The gamemode from &4%target% &6changed to &c%gm%&6!");
         addSetting("message.player-not-found", "%prefix% &c%target% is not online!");
@@ -107,6 +106,8 @@ public class HoneyAPI {
         addSetting("message.glow", "%prefix% §7Glow: §e%state%");
         addSetting("message.glow-target", "%prefix% §7Glow: §e%state% §8| §6%target%");
         addSetting("message.rtp-deny", "%prefix% §cYou can't teleport because the cooldown hasn't worn off! (500 seconds total)");
+        addSetting("message.seen-target-offline", "%prefix% §7The player §c%target% is offline since §e%time%");
+        addSetting("message.seen-target-online", "%prefix% §7The player §c%target% is online since §e%time%");
         addSetting("join-message", "§8[§a+§8] §7%player%");
         addSetting("quit-message", "§8[§4-§8] §7%player%");
     }
@@ -329,4 +330,9 @@ public class HoneyAPI {
         p.sendMessage(getColorCode(m));
     }
 
+    public static String getCurrentDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+        return sdf.format(date);
+    }
 }

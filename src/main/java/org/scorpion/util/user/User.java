@@ -37,6 +37,10 @@ public interface User {
 
     Location getDeathPoint();
 
+    void setOnlineTime();
+
+    String getOnlineTime();
+
     void ban(String reason, long ms, Time time);
 
     boolean isBanned();

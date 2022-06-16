@@ -62,6 +62,7 @@ public class HoneyCore extends JavaPlugin {
         Objects.requireNonNull(getCommand("day")).setExecutor(new CommandDay());
         Objects.requireNonNull(getCommand("night")).setExecutor(new CommandNight());
         Objects.requireNonNull(getCommand("glow")).setExecutor(new CommandGlow());
+        Objects.requireNonNull(getCommand("seen")).setExecutor(new CommandSeen());
 
         getServer().getPluginManager().registerEvents(new HoneyUserListener(), this);
         getServer().getPluginManager().registerEvents(new HoneyCommandListener(), this);

@@ -156,6 +156,19 @@ public record HoneyUser(UUID uuid) implements User {
     }
 
     @Override
+    public void setOnlineTime() {
+        FileManager file = new FileManager("plugins/HoneyCore/User/"+uuid+".yml");
+        file.set("PlayerTime", HoneyAPI.getCurrentDate());
+        file.save();
+    }
+
+    @Override
+    public String getOnlineTime() {
+        FileManager file = new FileManager("plugins/HoneyCore/User/"+uuid+".yml");
+        return file.getString("PlayerTime");
+    }
+
+    @Override
     public void ban(String reason, long ms, Time time) {
         FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
     }

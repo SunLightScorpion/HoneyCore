@@ -15,11 +15,7 @@ public class CommandGlow implements CommandExecutor {
         if (sender instanceof Player p) {
             if (p.hasPermission(HoneyAPI.getPermission("glow"))) {
                 if (args.length == 0) {
-                    if (p.isGlowing()) {
-                        p.setGlowing(false);
-                    } else {
-                        p.setGlowing(true);
-                    }
+                    p.setGlowing(!p.isGlowing());
                     p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.glow").replace("%state%", p.isGlowing()+"")));
                 }
 

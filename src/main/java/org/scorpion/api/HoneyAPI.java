@@ -313,7 +313,14 @@ public class HoneyAPI {
 
     public static Location getSpawn() {
         FileManager file = new FileManager("plugins/HoneyCore/Spawn.yml");
-        return file.getLocation("spawn");
+
+        var loc = file.getLocation("spawn");
+
+        if(loc == null){
+            return Objects.requireNonNull(Bukkit.getWorld("world")).getSpawnLocation();
+        }
+
+        return loc;
     }
 
     public static void setSpawn(Location location) {

@@ -20,7 +20,7 @@ public class CommandBack implements CommandExecutor {
 
             if(user.getDeathPoint() == null){
                 p.teleport(HoneyAPI.getSpawn());
-            } else{
+            } else {
                 p.teleport(user.getDeathPoint());
             }
         }

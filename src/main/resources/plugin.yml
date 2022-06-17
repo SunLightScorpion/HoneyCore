@@ -38,3 +38,5 @@ commands:
   ui:
   glow:
   seen:
+  ban:
+  kill:

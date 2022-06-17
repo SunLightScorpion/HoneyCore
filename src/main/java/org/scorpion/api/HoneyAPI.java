@@ -74,6 +74,8 @@ public class HoneyAPI {
         addSetting("permission.glow-target", "honey.glow.target");
         addSetting("permission.seen-target", "honey.seen.target");
         addSetting("permission.ban-player", "honey.ban");
+        addSetting("permission.kill", "honey.kill");
+        addSetting("permission.kill-target", "honey.kill.target");
         addSetting("message.gamemode", "%prefix% &6Your gamemode changed to &c%gm%&6!");
         addSetting("message.gamemode-target", "%prefix% &6The gamemode from &4%target% &6changed to &c%gm%&6!");
         addSetting("message.player-not-found", "%prefix% &c%target% is not online!");
@@ -112,6 +114,8 @@ public class HoneyAPI {
         addSetting("message.ban-player", "§c§lYou was banned!\n§7Reason: §e%reason%\n§7End: §e%time%");
         addSetting("message.ban-syntax", "%prefix% §c/ban <Player> <Reason>");
         addSetting("message.ban-player-message", "%prefix% §e%target% §7wurde gebannt.");
+        addSetting("message.kill", "%prefix% §7You was killed!");
+        addSetting("message.kill-target", "%prefix% §7The player §e%target% §7was killed!");
         addSetting("join-message", "§8[§a+§8] §7%player%");
         addSetting("quit-message", "§8[§4-§8] §7%player%");
     }

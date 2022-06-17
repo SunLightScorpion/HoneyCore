@@ -45,6 +45,12 @@ public interface User {
 
     boolean isBanned();
 
+    void unban();
+
+    String getReason()
+
+    long getTime();
+
     UserInterface getUserInterface();
 
 }

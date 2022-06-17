@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
@@ -103,4 +104,16 @@ public class HoneyUserListener implements Listener {
         user.setOnlineTime();
     }
 
+    @EventHandler
+    public void on(PlayerLoginEvent e) {
+        Player p = e.getPlayer();
+        HoneyUser user = new HoneyUser(p.getUniqueId());
+        if (user.isBanned()) {
+            if (user.getTime() == -1) {
+                e.disallow(PlayerLoginEvent.Result.KICK_OTHER, HoneyAPI.getColorCode(HoneyAPI.getMessage("message.ban-player").replace("%reason%", user.getReason()).replace("%time%", "§cPermanent")));
+            } else {
+                e.disallow(PlayerLoginEvent.Result.KICK_OTHER, HoneyAPI.getColorCode(HoneyAPI.getMessage("message.ban-player").replace("%reason%", user.getReason()).replace("%time%", HoneyAPI.getCurrentDate(user.getTime()))));
+            }
+        }
+    }
 }

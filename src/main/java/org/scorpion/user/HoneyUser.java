@@ -171,13 +171,40 @@ public record HoneyUser(UUID uuid) implements User {
     @Override
     public void ban(String reason, long ms, Time time) {
         FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+        long var = time.getTime() + ms;
+        file.set("Reason", reason);
+        file.set("Time",  System.currentTimeMillis() + var);
+        file.set("Banned", true);
+        file.save();
     }
 
     @Override
     public boolean isBanned() {
         FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
-        return false;
+        return file.getBoolean("Banned");
     }
+
+    @Override
+    public void unban() {
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+        file.deleteLine("Reason");
+        file.deleteLine("Time");
+        file.set("Banned", false);
+        file.save();
+    }
+
+    @Override
+    public String getReason() {
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+        return file.getString("Reason");
+    }
+
+    @Override
+    public long getTime() {
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+        return file.getLong("Time");
+    }
+
 
     @Override
     public UserInterface getUserInterface() {

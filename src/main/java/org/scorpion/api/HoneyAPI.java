@@ -73,6 +73,7 @@ public class HoneyAPI {
         addSetting("permission.glow", "honey.glow");
         addSetting("permission.glow-target", "honey.glow.target");
         addSetting("permission.seen-target", "honey.seen.target");
+        addSetting("permission.ban-player", "honey.ban");
         addSetting("message.gamemode", "%prefix% &6Your gamemode changed to &c%gm%&6!");
         addSetting("message.gamemode-target", "%prefix% &6The gamemode from &4%target% &6changed to &c%gm%&6!");
         addSetting("message.player-not-found", "%prefix% &c%target% is not online!");
@@ -108,6 +109,9 @@ public class HoneyAPI {
         addSetting("message.rtp-deny", "%prefix% §cYou can't teleport because the cooldown hasn't worn off! (500 seconds total)");
         addSetting("message.seen-target-offline", "%prefix% §7The player §c%target% §7is offline since §e%time%");
         addSetting("message.seen-target-online", "%prefix% §7The player §c%target% §7is online since §e%time%");
+        addSetting("message.ban-player", "§c§lYou was banned!\n§7Reason: §e%reason%\n§7End: §e%time%");
+        addSetting("message.ban-syntax", "%prefix% §c/ban <Player> <Reason>");
+        addSetting("message.ban-player-message", "%prefix% §e%target% §7wurde gebannt.");
         addSetting("join-message", "§8[§a+§8] §7%player%");
         addSetting("quit-message", "§8[§4-§8] §7%player%");
     }
@@ -340,6 +344,12 @@ public class HoneyAPI {
     public static String getCurrentDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
+        return sdf.format(date);
+    }
+
+    public static String getCurrentDate(long current) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        Date date = new Date(current);
         return sdf.format(date);
     }
 }

@@ -40,3 +40,5 @@ commands:
   seen:
   ban:
   kill:
+  broadcast:
+    aliases: bc

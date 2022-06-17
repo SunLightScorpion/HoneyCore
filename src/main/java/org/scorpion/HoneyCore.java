@@ -65,6 +65,7 @@ public class HoneyCore extends JavaPlugin {
         Objects.requireNonNull(getCommand("seen")).setExecutor(new CommandSeen());
         Objects.requireNonNull(getCommand("ban")).setExecutor(new CommandBan());
         Objects.requireNonNull(getCommand("kill")).setExecutor(new CommandKill());
+        Objects.requireNonNull(getCommand("broadcast")).setExecutor(new CommandBroadcast());
 
         getServer().getPluginManager().registerEvents(new HoneyUserListener(), this);
         getServer().getPluginManager().registerEvents(new HoneyCommandListener(), this);

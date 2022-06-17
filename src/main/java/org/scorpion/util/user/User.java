@@ -47,9 +47,13 @@ public interface User {
 
     void unban();
 
-    String getReason()
+    String getReason();
 
     long getTime();
+
+    void setGod(boolean b);
+
+    String getGod();
 
     UserInterface getUserInterface();
 

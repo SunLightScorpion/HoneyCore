@@ -205,6 +205,19 @@ public record HoneyUser(UUID uuid) implements User {
         return file.getLong("Time");
     }
 
+    @Override
+    public void setGod(boolean b) {
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+        file.set("God", b);
+        file.save();
+    }
+
+    @Override
+    public String getGod() {
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+        return file.getString("God");
+    }
+
 
     @Override
     public UserInterface getUserInterface() {

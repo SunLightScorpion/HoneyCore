@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -113,6 +114,17 @@ public class HoneyUserListener implements Listener {
                 e.disallow(PlayerLoginEvent.Result.KICK_OTHER, HoneyAPI.getColorCode(HoneyAPI.getMessage("message.ban-player").replace("%reason%", user.getReason()).replace("%time%", "§cPermanent")));
             } else {
                 e.disallow(PlayerLoginEvent.Result.KICK_OTHER, HoneyAPI.getColorCode(HoneyAPI.getMessage("message.ban-player").replace("%reason%", user.getReason()).replace("%time%", HoneyAPI.getCurrentDate(user.getTime()))));
+            }
+        }
+    }
+
+    @EventHandler
+    public void on(EntityDamageEvent e) {
+
+        if (e.getEntity() instanceof Player p) {
+            HoneyUser user = new HoneyUser(p.getUniqueId());
+            if (user.getGod().equalsIgnoreCase("true")) {
+                e.setCancelled(true);
             }
         }
     }

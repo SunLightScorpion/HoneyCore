@@ -43,3 +43,4 @@ commands:
   broadcast:
     aliases: bc
   sudo:
+  god:

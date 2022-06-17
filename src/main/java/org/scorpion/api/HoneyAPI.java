@@ -77,6 +77,7 @@ public class HoneyAPI {
         addSetting("permission.kill", "honey.kill");
         addSetting("permission.kill-target", "honey.kill.target");
         addSetting("permission.broadcast", "honey.broadcast");
+        addSetting("permission.sudo", "honey.sudo");
         addSetting("message.gamemode", "%prefix% &6Your gamemode changed to &c%gm%&6!");
         addSetting("message.gamemode-target", "%prefix% &6The gamemode from &4%target% &6changed to &c%gm%&6!");
         addSetting("message.player-not-found", "%prefix% &c%target% is not online!");
@@ -119,6 +120,8 @@ public class HoneyAPI {
         addSetting("message.kill-target", "%prefix% §7The player §e%target% §7was killed!");;
         addSetting("message.broadcast", "%prefix% §8» §a%bc%");
         addSetting("message.broadcast-syntax", "%prefix% §c/Broadcast (Text)");
+        addSetting("message.sudo-syntax", "%prefix% §c/Sudo (Player) (Message)");
+        addSetting("message.sudo-target", "%prefix% §e%target% §7has completed his task");
         addSetting("join-message", "§8[§a+§8] §7%player%");
         addSetting("quit-message", "§8[§4-§8] §7%player%");
     }

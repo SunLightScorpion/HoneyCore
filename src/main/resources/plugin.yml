@@ -44,3 +44,4 @@ commands:
     aliases: bc
   sudo:
   god:
+  hat:

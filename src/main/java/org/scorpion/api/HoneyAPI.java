@@ -106,8 +106,8 @@ public class HoneyAPI {
         addSetting("message.glow", "%prefix% §7Glow: §e%state%");
         addSetting("message.glow-target", "%prefix% §7Glow: §e%state% §8| §6%target%");
         addSetting("message.rtp-deny", "%prefix% §cYou can't teleport because the cooldown hasn't worn off! (500 seconds total)");
-        addSetting("message.seen-target-offline", "%prefix% §7The player §c%target% is offline since §e%time%");
-        addSetting("message.seen-target-online", "%prefix% §7The player §c%target% is online since §e%time%");
+        addSetting("message.seen-target-offline", "%prefix% §7The player §c%target% §7is offline since §e%time%");
+        addSetting("message.seen-target-online", "%prefix% §7The player §c%target% §7is online since §e%time%");
         addSetting("join-message", "§8[§a+§8] §7%player%");
         addSetting("quit-message", "§8[§4-§8] §7%player%");
     }

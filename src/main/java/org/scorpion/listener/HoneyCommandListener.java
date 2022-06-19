@@ -16,7 +16,7 @@ public class HoneyCommandListener implements Listener {
         Player p = e.getPlayer();
         String cmd = e.getMessage().split(" ")[0];
 
-        if(HoneyAPI.hideServerDetails()){
+        if (HoneyAPI.hideServerDetails()) {
             if (cmd.equalsIgnoreCase("/bukkit:") ||
                     cmd.equalsIgnoreCase("/minecraft:") ||
                     cmd.equalsIgnoreCase("/version") ||

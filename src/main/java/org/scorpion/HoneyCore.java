@@ -1,10 +1,10 @@
 package org.scorpion;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.scorpion.api.HoneyAPI;
 import org.scorpion.commands.*;
 import org.scorpion.listener.HoneyCommandListener;
 import org.scorpion.listener.HoneyUserListener;
-import org.scorpion.api.HoneyAPI;
 
 import java.util.Objects;
 

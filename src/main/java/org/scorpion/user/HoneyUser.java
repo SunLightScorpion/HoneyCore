@@ -5,11 +5,11 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
-import org.scorpion.user.inventory.UserInterface;
 import org.scorpion.api.HoneyAPI;
+import org.scorpion.user.inventory.UserInterface;
+import org.scorpion.util.Time;
 import org.scorpion.util.file.FileManager;
 import org.scorpion.util.item.ItemBuilder;
-import org.scorpion.util.Time;
 import org.scorpion.util.user.User;
 
 import java.io.File;
@@ -51,7 +51,7 @@ public record HoneyUser(UUID uuid) implements User {
                 player.teleport(HoneyAPI.getSpawn());
                 player.getInventory().addItem(kit);
 
-                if(HoneyAPI.welcomeNewPlayer()){
+                if (HoneyAPI.welcomeNewPlayer()) {
                     Bukkit.broadcastMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.welcome-new-player", player.getName())));
                 }
             }
@@ -143,6 +143,12 @@ public record HoneyUser(UUID uuid) implements User {
     }
 
     @Override
+    public Location getDeathPoint() {
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+        return file.getLocation("death-point");
+    }
+
+    @Override
     public void setDeathPoint(Location location) {
         FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
         file.set("death-point", location);
@@ -150,21 +156,15 @@ public record HoneyUser(UUID uuid) implements User {
     }
 
     @Override
-    public Location getDeathPoint() {
-        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
-        return file.getLocation("death-point");
-    }
-
-    @Override
     public void setOnlineTime() {
-        FileManager file = new FileManager("plugins/HoneyCore/User/"+uuid+".yml");
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid + ".yml");
         file.set("PlayerTime", HoneyAPI.getCurrentDate());
         file.save();
     }
 
     @Override
     public String getOnlineTime() {
-        FileManager file = new FileManager("plugins/HoneyCore/User/"+uuid+".yml");
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid + ".yml");
         return file.getString("PlayerTime");
     }
 
@@ -173,7 +173,7 @@ public record HoneyUser(UUID uuid) implements User {
         FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
         long var = time.getTime() + ms;
         file.set("Reason", reason);
-        file.set("Time",  System.currentTimeMillis() + var);
+        file.set("Time", System.currentTimeMillis() + var);
         file.set("Banned", true);
         file.save();
     }
@@ -206,18 +206,17 @@ public record HoneyUser(UUID uuid) implements User {
     }
 
     @Override
-    public void setGod(boolean b) {
-        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
-        file.set("God", b);
-        file.save();
-    }
-
-    @Override
     public String getGod() {
         FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
         return file.getString("God");
     }
 
+    @Override
+    public void setGod(boolean b) {
+        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid() + ".yml");
+        file.set("God", b);
+        file.save();
+    }
 
     @Override
     public UserInterface getUserInterface() {

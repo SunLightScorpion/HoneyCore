@@ -14,8 +14,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.scorpion.HoneyCore;
-import org.scorpion.user.HoneyUser;
 import org.scorpion.api.HoneyAPI;
+import org.scorpion.user.HoneyUser;
 import org.scorpion.util.user.User;
 
 import java.util.Objects;
@@ -50,32 +50,32 @@ public class HoneyUserListener implements Listener {
     }
 
     @EventHandler
-    public void on(InventoryClickEvent e){
-        if(e.getCurrentItem() == null){
+    public void on(InventoryClickEvent e) {
+        if (e.getCurrentItem() == null) {
             return;
         }
-        if(e.getClickedInventory() == null){
+        if (e.getClickedInventory() == null) {
             return;
         }
 
         var view = e.getView();
 
-        if(view.getTitle().equalsIgnoreCase("§a/ui - User Info")){
+        if (view.getTitle().equalsIgnoreCase("§a/ui - User Info")) {
             e.setCancelled(true);
 
             ItemStack item = e.getCurrentItem();
             Player p = (Player) e.getWhoClicked();
 
-            if(item.getType() == Material.LIME_BED){
+            if (item.getType() == Material.LIME_BED) {
                 var display = Objects.requireNonNull(item.getItemMeta()).getDisplayName().replace("§a", "");
 
                 p.teleport(HoneyAPI.getUser(p.getUniqueId()).getHome(display));
                 p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.home-teleport").replace("%home%", display)));
             }
-            if(item.getType() == Material.ENDER_CHEST){
+            if (item.getType() == Material.ENDER_CHEST) {
                 p.openInventory(p.getEnderChest());
             }
-            if(item.getType() == Material.CRAFTING_TABLE){
+            if (item.getType() == Material.CRAFTING_TABLE) {
                 p.openWorkbench(null, true);
             }
         }
@@ -83,14 +83,14 @@ public class HoneyUserListener implements Listener {
     }
 
     @EventHandler
-    public void on(PlayerDeathEvent e){
+    public void on(PlayerDeathEvent e) {
         Player p = e.getEntity();
         var user = new HoneyUser(p.getUniqueId());
         user.setDeathPoint(p.getLocation());
     }
 
     @EventHandler
-    public void on(PlayerRespawnEvent e){
+    public void on(PlayerRespawnEvent e) {
         Player p = e.getPlayer();
         Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), () -> {
             p.teleport(HoneyAPI.getSpawn());
@@ -98,7 +98,7 @@ public class HoneyUserListener implements Listener {
     }
 
     @EventHandler
-    public void on(PlayerQuitEvent e){
+    public void on(PlayerQuitEvent e) {
         Player p = e.getPlayer();
         HoneyUser user = new HoneyUser(p.getUniqueId());
         e.setQuitMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("quit-message", p.getName())));

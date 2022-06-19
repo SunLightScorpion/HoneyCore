@@ -16,7 +16,7 @@ public class CommandGlow implements CommandExecutor {
             if (p.hasPermission(HoneyAPI.getPermission("glow"))) {
                 if (args.length == 0) {
                     p.setGlowing(!p.isGlowing());
-                    p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.glow").replace("%state%", p.isGlowing()+"")));
+                    p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.glow").replace("%state%", p.isGlowing() + "")));
                 }
 
                 if (args.length == 1) {
@@ -27,14 +27,8 @@ public class CommandGlow implements CommandExecutor {
                             p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.player-not-found").replace("%target%", args[0])));
                             return true;
                         }
-
-                        if (t.isGlowing()) {
-                            t.setGlowing(false);
-                        } else {
-                            t.setGlowing(true);
-                        }
-
-                        p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.glow-target").replace("%state%", p.isGlowing()+"").replace("%target%", args[0])));
+                        t.setGlowing(!t.isGlowing());
+                        p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.glow-target").replace("%state%", p.isGlowing() + "").replace("%target%", args[0])));
                     } else {
                         HoneyAPI.sendNoPermission(p);
                     }

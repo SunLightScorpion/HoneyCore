@@ -8,6 +8,7 @@ import org.scorpion.api.HoneyAPI;
 import org.scorpion.util.command.ScorpionCommand;
 
 public class CommandTPDeny extends ScorpionCommand {
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player p) {

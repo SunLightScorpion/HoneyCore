@@ -5,9 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.scorpion.api.HoneyAPI;
-import org.scorpion.user.HoneyUser;
 import org.scorpion.util.item.ItemBuilder;
-import org.scorpion.util.user.User;
 
 /**
  * @author Lukas on 3/27/2022
@@ -16,20 +14,20 @@ public class UserInterface {
 
     public final String INV_STRING = "§a/ui - User Info";
 
-    public Inventory getUserInterface(Player p){
-        Inventory inv = Bukkit.createInventory(p, 9*3, INV_STRING);
+    public Inventory getUserInterface(Player p) {
+        Inventory inv = Bukkit.createInventory(p, 9 * 3, INV_STRING);
 
-        for(int i = 0; i < inv.getSize(); i++){
+        for (int i = 0; i < inv.getSize(); i++) {
             inv.setItem(i, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setName(" ").build());
         }
 
-        for(int j = 0; j < HoneyAPI.getUser(p.getUniqueId()).getMaxHomes(); j++){
-            inv.setItem(1+j, new ItemBuilder(Material.WHITE_BED).setName("§c-").build());
+        for (int j = 0; j < HoneyAPI.getUser(p.getUniqueId()).getMaxHomes(); j++) {
+            inv.setItem(1 + j, new ItemBuilder(Material.WHITE_BED).setName("§c-").build());
         }
 
-        if(HoneyAPI.getUser(p.getUniqueId()).getHomes().size() > 0){
-            for(int h = 0; h < HoneyAPI.getUser(p.getUniqueId()).getHomes().size(); h++){
-                inv.setItem(1+h, new ItemBuilder(Material.LIME_BED).setName("§a"+HoneyAPI.getUser(p.getUniqueId()).getHomes().get(h)).build());
+        if (HoneyAPI.getUser(p.getUniqueId()).getHomes().size() > 0) {
+            for (int h = 0; h < HoneyAPI.getUser(p.getUniqueId()).getHomes().size(); h++) {
+                inv.setItem(1 + h, new ItemBuilder(Material.LIME_BED).setName("§a" + HoneyAPI.getUser(p.getUniqueId()).getHomes().get(h)).build());
             }
         }
 

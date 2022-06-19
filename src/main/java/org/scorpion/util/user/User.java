@@ -33,9 +33,9 @@ public interface User {
 
     boolean existHome(String name);
 
-    void setDeathPoint(Location location);
-
     Location getDeathPoint();
+
+    void setDeathPoint(Location location);
 
     void setOnlineTime();
 
@@ -51,9 +51,9 @@ public interface User {
 
     long getTime();
 
-    void setGod(boolean b);
-
     String getGod();
+
+    void setGod(boolean b);
 
     UserInterface getUserInterface();
 

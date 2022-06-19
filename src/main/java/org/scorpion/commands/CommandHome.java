@@ -4,8 +4,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.scorpion.user.HoneyUser;
 import org.scorpion.api.HoneyAPI;
+import org.scorpion.user.HoneyUser;
 import org.scorpion.util.command.ScorpionCommand;
 
 public class CommandHome extends ScorpionCommand {

@@ -17,27 +17,27 @@ public class CommandFly implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player p) {
             if (p.hasPermission(HoneyAPI.getPermission("fly"))) {
-                if(args.length == 0){
+                if (args.length == 0) {
                     if (!p.getAllowFlight()) {
                         p.setAllowFlight(true);
                     } else {
                         p.setFlying(false);
                         p.setAllowFlight(false);
                     }
-                    p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.fly-state").replace("%state%", p.getAllowFlight()+"")));
+                    p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.fly-state").replace("%state%", p.getAllowFlight() + "")));
                 }
-                if(args.length == 1){
+                if (args.length == 1) {
                     var o = Bukkit.getPlayer(args[0]);
 
-                    if(o != null){
+                    if (o != null) {
                         if (!o.getAllowFlight()) {
                             o.setAllowFlight(true);
                         } else {
                             o.setFlying(false);
                             o.setAllowFlight(false);
                         }
-                        o.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.fly-state").replace("%state%", p.getAllowFlight()+"")));
-                        p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.fly-state-target").replace("%state%", p.getAllowFlight()+"").replace("%target%", o.getName())));
+                        o.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.fly-state").replace("%state%", p.getAllowFlight() + "")));
+                        p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.fly-state-target").replace("%state%", p.getAllowFlight() + "").replace("%target%", o.getName())));
                     } else {
                         p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.player-not-found").replace("%target%", args[0])));
                     }

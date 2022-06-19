@@ -43,10 +43,10 @@ public class HoneyAPI {
         return ChatColor.translateAlternateColorCodes('&', input);
     }
 
-    public static void addSetting(String data, Object value){
+    public static void addSetting(String data, Object value) {
         FileManager file = new FileManager("plugins/HoneyCore/Settings.yml");
 
-        if(!file.isSet(data)){
+        if (!file.isSet(data)) {
             file.set(data, value);
         }
         file.save();
@@ -120,7 +120,8 @@ public class HoneyAPI {
         addSetting("message.ban-syntax", "%prefix% §c/ban <Player> <Reason>");
         addSetting("message.ban-player-message", "%prefix% §e%target% §7wurde gebannt.");
         addSetting("message.kill", "%prefix% §7You was killed!");
-        addSetting("message.kill-target", "%prefix% §7The player §e%target% §7was killed!");;
+        addSetting("message.kill-target", "%prefix% §7The player §e%target% §7was killed!");
+        ;
         addSetting("message.broadcast", "%prefix% §8» §a%bc%");
         addSetting("message.broadcast-syntax", "%prefix% §c/Broadcast (Text)");
         addSetting("message.sudo-syntax", "%prefix% §c/Sudo (Player) (Message)");
@@ -132,16 +133,16 @@ public class HoneyAPI {
         addSetting("quit-message", "§8[§4-§8] §7%player%");
     }
 
-    public static User getUser(UUID id){
+    public static User getUser(UUID id) {
         return new HoneyUser(id);
     }
 
-    public static int getRandomTeleportRange(){
+    public static int getRandomTeleportRange() {
         FileManager file = new FileManager("plugins/HoneyCore/Settings.yml");
         return Integer.parseInt(file.getString("random-teleport-range"));
     }
 
-    public static boolean welcomeNewPlayer(){
+    public static boolean welcomeNewPlayer() {
         FileManager file = new FileManager("plugins/HoneyCore/Settings.yml");
         return file.getBoolean("welcome-new-player");
     }
@@ -336,7 +337,7 @@ public class HoneyAPI {
 
         var loc = file.getLocation("spawn");
 
-        if(loc == null){
+        if (loc == null) {
             return Objects.requireNonNull(Bukkit.getWorld("world")).getSpawnLocation();
         }
 

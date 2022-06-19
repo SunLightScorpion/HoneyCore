@@ -8,7 +8,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.scorpion.api.HoneyAPI;
 
-public class CommandKill implements CommandExecutor{
+public class CommandKill implements CommandExecutor {
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player p) {
@@ -20,7 +21,7 @@ public class CommandKill implements CommandExecutor{
 
                 if (args.length == 1) {
                     if (p.hasPermission(HoneyAPI.getPermission("kill-target"))) {
-                        Player t = Bukkit.getPlayer(args[1]);
+                        Player t = Bukkit.getPlayer(args[0]);
 
                         if (t == null) {
                             p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.player-not-found")));

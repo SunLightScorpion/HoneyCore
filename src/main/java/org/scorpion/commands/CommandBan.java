@@ -11,7 +11,10 @@ import org.scorpion.api.HoneyAPI;
 import org.scorpion.user.HoneyUser;
 import org.scorpion.util.Time;
 
-public class CommandBan implements CommandExecutor{
+import java.util.Objects;
+
+public class CommandBan implements CommandExecutor {
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player p) {
@@ -28,7 +31,7 @@ public class CommandBan implements CommandExecutor{
                     builder.append(msg);
 
                     if (t.isOnline()) {
-                        t.getPlayer().kickPlayer(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.ban-player").replace("%reason%", builder).replace("%time%", "§ePermanent")));
+                        Objects.requireNonNull(t.getPlayer()).kickPlayer(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.ban-player").replace("%reason%", builder).replace("%time%", "§ePermanent")));
                         user.ban(builder.toString(), -1, Time.NONE);
                     }
                     p.sendMessage(HoneyAPI.getColorCode(HoneyAPI.getMessage("message.ban-player-message").replace("%target%", args[0])));

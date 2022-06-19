@@ -14,7 +14,7 @@ public class CommandUI implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if(sender instanceof Player p){
+        if (sender instanceof Player p) {
             p.openInventory(HoneyAPI.getUser(p.getUniqueId()).getUserInterface().getUserInterface(p));
         }
         return false;

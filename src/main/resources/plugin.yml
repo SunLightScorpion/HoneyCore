@@ -1,7 +1,7 @@
 name: HoneyCore
 main: org.scorpion.HoneyCore
 version: contains
-api-version: 1.17
+api-version: 1.19
 author: NightDev401 (Lukas)
 commands:
   gamemode:

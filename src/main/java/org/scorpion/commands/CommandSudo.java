@@ -15,7 +15,7 @@ public class CommandSudo implements CommandExecutor {
         if (sender instanceof Player p) {
             StringBuilder builder = new StringBuilder();
             if (p.hasPermission(HoneyAPI.getPermission("sudo"))) {
-                if (args.length == 2) {
+                if (args.length >= 2) {
                     Player t = Bukkit.getPlayer(args[0]);
 
                     StringBuilder msg = new StringBuilder();

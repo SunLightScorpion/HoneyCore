@@ -34,7 +34,7 @@ public class HoneyUserListener implements Listener {
         Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), user::createUser, 5);
 
         Bukkit.getScheduler().runTaskLater(HoneyCore.getPlugin(), () -> {
-            if (p.hasPermission("honey.notify")) {
+            if (p.hasPermission(HoneyAPI.getPermission("notify"))) {
                 if (HoneyAPI.needUpdate(HoneyAPI.VERSION) && !HoneyAPI.isSnapshot(HoneyAPI.VERSION)) {
                     p.sendMessage(HoneyAPI.getPrefix() + "§cUpdate is available!");
                 } else if (HoneyAPI.needUpdate(HoneyAPI.VERSION) && HoneyAPI.isSnapshot(HoneyAPI.VERSION)) {

@@ -84,6 +84,7 @@ public class HoneyAPI {
         addSetting("permission.day", "honey.day");
         addSetting("permission.night", "honey.night");
         addSetting("permission.delwarp", "honey.delwarp");
+        addSetting("permission.notify", "honey.notify");
         addSetting("message.gamemode", "%prefix% &6Your gamemode changed to &c%gm%&6!");
         addSetting("message.gamemode-target", "%prefix% &6The gamemode from &4%target% &6changed to &c%gm%&6!");
         addSetting("message.player-not-found", "%prefix% &c%target% is not online!");

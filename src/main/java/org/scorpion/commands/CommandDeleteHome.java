@@ -18,7 +18,7 @@ public class CommandDeleteHome extends ScorpionCommand {
                 var data = args[0];
 
                 if (!user.existHome(data)) {
-                    p.sendMessage(HoneyAPI.getPrefix() + "");
+                    p.sendMessage(HoneyAPI.getPrefix() + "§cHome don't exist!");
                     return false;
                 }
 

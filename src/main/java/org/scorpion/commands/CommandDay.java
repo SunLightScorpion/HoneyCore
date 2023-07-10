@@ -11,7 +11,7 @@ public class CommandDay implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player p) {
-            if (!p.hasPermission("core.day")) {
+            if (!p.hasPermission(HoneyAPI.getPermission("day"))) {
                 return true;
             }
             p.getWorld().setTime(1000);

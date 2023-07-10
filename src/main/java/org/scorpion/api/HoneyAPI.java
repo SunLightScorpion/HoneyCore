@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
  */
 public class HoneyAPI {
 
-    public final static String VERSION = "1.7.1-SNAPSHOT";
+    public final static String VERSION = "1.8.0-SNAPSHOT";
     protected static final LinkedList<String> warps = new LinkedList<>();
     protected static final HashMap<Player, Player> tpa = new HashMap<>();
     protected static final HashMap<Player, Player> tpaHere = new HashMap<>();
@@ -68,8 +68,8 @@ public class HoneyAPI {
         addSetting("permission.fly", "honey.fly");
         addSetting("permission.setwarp", "honey.setwarp");
         addSetting("permission.sun", "honey.sun");
+        addSetting("permission.rain", "honey.rain");
         addSetting("permission.kick", "honey.kick");
-        addSetting("permission.rtp-bypass", "honey.rtp.bypass");
         addSetting("permission.glow", "honey.glow");
         addSetting("permission.glow-target", "honey.glow.target");
         addSetting("permission.seen-target", "honey.seen.target");
@@ -81,6 +81,9 @@ public class HoneyAPI {
         addSetting("permission.god", "honey.god");
         addSetting("permission.god-target", "honey.god.target");
         addSetting("permission.hat", "honey.hat");
+        addSetting("permission.day", "honey.day");
+        addSetting("permission.night", "honey.night");
+        addSetting("permission.delwarp", "honey.delwarp");
         addSetting("message.gamemode", "%prefix% &6Your gamemode changed to &c%gm%&6!");
         addSetting("message.gamemode-target", "%prefix% &6The gamemode from &4%target% &6changed to &c%gm%&6!");
         addSetting("message.player-not-found", "%prefix% &c%target% is not online!");
@@ -164,54 +167,6 @@ public class HoneyAPI {
                 warps.add(object.getName().replace(".yml", ""));
             }
         }
-    }
-
-    private static void saveRandomTPActionTime(UUID uuid) {
-        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid + ".yml");
-        file.set("rtp", System.currentTimeMillis() + Time.MINUTE.getTime() * 5);
-        file.save();
-    }
-
-    private static boolean canRTP(UUID uuid) {
-        FileManager file = new FileManager("plugins/HoneyCore/User/" + uuid + ".yml");
-        return System.currentTimeMillis() > file.getLong("rtp");
-    }
-
-    public static void randomTeleportPlayer(Player p) {
-        if (!p.hasPermission(HoneyAPI.getPermission("rtp-bypass"))) {
-            if (!canRTP(p.getUniqueId())) {
-                p.sendMessage(getColorCode(getMessage("message.rtp-deny")));
-                return;
-            }
-            saveRandomTPActionTime(p.getUniqueId());
-        }
-        p.teleport(generateRandomLocation());
-    }
-
-    @NotNull
-    private static Location generateRandomLocation() {
-        var world = Bukkit.getWorld("world");
-        Random random = new Random();
-        int x = random.nextInt(getRandomTeleportRange()) + 200;
-        int y = 150;
-        int z = random.nextInt(getRandomTeleportRange()) + 200;
-        Location loc = new Location(world, x, y, z);
-
-        var ocean = loc.getBlock().getBiome().getKey().getKey().contains("ocean")
-                || loc.getBlock().getBiome().getKey().getKey().contains("slopes")
-                || loc.getBlock().getBiome().getKey().getKey().contains("river");
-
-        if (ocean) {
-            return generateRandomLocation();
-        }
-
-        loc.getChunk().load(true);
-
-        assert world != null;
-        y = world.getHighestBlockYAt(loc) + 2;
-        loc.setY(y);
-
-        return loc;
     }
 
     public static void acceptTPA(Player target) {

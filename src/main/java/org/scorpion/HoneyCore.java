@@ -30,7 +30,6 @@ public class HoneyCore extends JavaPlugin {
         Objects.requireNonNull(getCommand("spawn")).setExecutor(new CommandSpawn());
         Objects.requireNonNull(getCommand("tp")).setExecutor(new CommandTeleport());
         Objects.requireNonNull(getCommand("teleport")).setExecutor(new CommandTeleport());
-        Objects.requireNonNull(getCommand("rtp")).setExecutor(new CommandRandomTeleport());
         Objects.requireNonNull(getCommand("fly")).setExecutor(new CommandFly());
         Objects.requireNonNull(getCommand("ping")).setExecutor(new CommandPing());
 

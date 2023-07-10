@@ -15,7 +15,7 @@ public class CommandDelwarp extends ScorpionCommand {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player p) {
-            if (p.hasPermission("api.delwarp")) {
+            if (p.hasPermission(HoneyAPI.getPermission("delwarp"))) {
                 if (args.length == 1) {
                     String data = args[0];
                     Warp warp = new Warp(data);

@@ -11,7 +11,7 @@ public class CommandNight implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player p) {
-            if (!p.hasPermission("core.night")) {
+            if (!p.hasPermission(HoneyAPI.getPermission("night"))) {
                 return true;
             }
             p.getWorld().setTime(18000);

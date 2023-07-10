@@ -11,7 +11,7 @@ public class CommandRain implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player p) {
-            if (!p.hasPermission("core.rain")) {
+            if (!p.hasPermission(HoneyAPI.getPermission("rain"))) {
                 return true;
             }
             p.getWorld().setStorm(true);

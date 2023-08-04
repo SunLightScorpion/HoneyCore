@@ -125,7 +125,7 @@ public record HoneyUser(UUID uuid) implements User {
     @Override
     public String listHomes() {
 
-        if (getHomes().size() == 0) {
+        if (getHomes().isEmpty()) {
             return "§cHomes not found";
         }
 

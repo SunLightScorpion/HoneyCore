@@ -55,7 +55,6 @@ public class HoneyAPI {
     public static void manageLang() {
         addSetting("prefix", "&8[&eHoney&6Core&8]");
         addSetting("hide-server-detail", true);
-        addSetting("random-teleport-range", 4000);
         addSetting("welcome-new-player", true);
         addSetting("permission.gamemode", "honey.gamemode");
         addSetting("permission.gamemode-target", "honey.gamemode.target");
@@ -139,11 +138,6 @@ public class HoneyAPI {
 
     public static User getUser(UUID id) {
         return new HoneyUser(id);
-    }
-
-    public static int getRandomTeleportRange() {
-        FileManager file = new FileManager("plugins/HoneyCore/Settings.yml");
-        return Integer.parseInt(file.getString("random-teleport-range"));
     }
 
     public static boolean welcomeNewPlayer() {

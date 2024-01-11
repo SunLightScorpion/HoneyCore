@@ -6,7 +6,10 @@ compileJava {
     options.encoding = 'UTF-8'
 }
 
-group 'org.scorpion'
+String commit = 'git rev-parse --verify --short HEAD'.execute().text.trim()
+
+group 'org.sunlightdev'
+version "2.0-SNAPSHOT-" + commit
 
 repositories {
     mavenCentral()
@@ -16,9 +19,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.20.2-R0.1-SNAPSHOT")
-    implementation 'org.jetbrains:annotations:23.0.0'
-    implementation files('API/json.jar')
+    compileOnly("org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT")
+    compileOnly 'org.jetbrains:annotations:23.0.0'
 }
 
 java {
@@ -29,7 +31,6 @@ java {
 
 jar {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    from(zipTree("API/json.jar"))
     from {
         subprojects.collect { it.sourceSets.main.output }
     }

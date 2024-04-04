@@ -4,18 +4,12 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
-import org.json.JSONObject;
 import org.scorpion.user.HoneyUser;
-import org.scorpion.util.Time;
 import org.scorpion.util.file.FileManager;
 import org.scorpion.util.user.User;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
-import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -27,7 +21,7 @@ import java.util.regex.Pattern;
  */
 public class HoneyAPI {
 
-    public final static String VERSION = "1.8.0-SNAPSHOT";
+    public final static String VERSION = "2.0.0-SNAPSHOT";
     protected static final LinkedList<String> warps = new LinkedList<>();
     protected static final HashMap<Player, Player> tpa = new HashMap<>();
     protected static final HashMap<Player, Player> tpaHere = new HashMap<>();
@@ -116,7 +110,6 @@ public class HoneyAPI {
         addSetting("message.kick-syntax", "%prefix% §c/kick <Player> <Reason>!");
         addSetting("message.glow", "%prefix% §7Glow: §e%state%");
         addSetting("message.glow-target", "%prefix% §7Glow: §e%state% §8| §6%target%");
-        addSetting("message.rtp-deny", "%prefix% §cYou can't teleport because the cooldown hasn't worn off! (500 seconds total)");
         addSetting("message.seen-target-offline", "%prefix% §7The player §c%target% §7is offline since §e%time%");
         addSetting("message.seen-target-online", "%prefix% §7The player §c%target% §7is online since §e%time%");
         addSetting("message.ban-player", "§c§lYou was banned!\n§7Reason: §e%reason%\n§7End: §e%time%");
@@ -124,7 +117,6 @@ public class HoneyAPI {
         addSetting("message.ban-player-message", "%prefix% §e%target% §7wurde gebannt.");
         addSetting("message.kill", "%prefix% §7You was killed!");
         addSetting("message.kill-target", "%prefix% §7The player §e%target% §7was killed!");
-        ;
         addSetting("message.broadcast", "%prefix% §8» §a%bc%");
         addSetting("message.broadcast-syntax", "%prefix% §c/Broadcast (Text)");
         addSetting("message.sudo-syntax", "%prefix% §c/Sudo (Player) (Message)");
@@ -216,27 +208,12 @@ public class HoneyAPI {
         target.sendMessage(getPrefix() + "§7You have received a teleport request from §c" + sender.getName() + "§7!");
     }
 
-    private static Object getWebData(String u, String data) {
-        try {
-            URL url = new URL(u);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-
-            String line = reader.readLine();
-            JSONObject json = new JSONObject(line);
-            return json.getString(data);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
     public static String getPluginVersion() {
-        return getWebData("https://sunlightscorpion.de/honey.json", "plugin").toString();
+        return null;
     }
 
     public static boolean needUpdate(String version) {
-        String current = getWebData("https://sunlightscorpion.de/honey.json", "plugin").toString();
-        return !current.equalsIgnoreCase(version);
+        return true;
     }
 
     public static boolean isSnapshot(String version) {

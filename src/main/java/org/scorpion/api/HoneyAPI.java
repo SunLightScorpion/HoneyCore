@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
  */
 public class HoneyAPI {
 
-    public final static String VERSION = "1.8.0-SNAPSHOT";
+    public final static String VERSION = "2.0.0-SNAPSHOT";
     protected static final LinkedList<String> warps = new LinkedList<>();
     protected static final HashMap<Player, Player> tpa = new HashMap<>();
     protected static final HashMap<Player, Player> tpaHere = new HashMap<>();

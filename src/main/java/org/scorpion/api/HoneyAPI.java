@@ -8,11 +8,8 @@ import org.scorpion.user.HoneyUser;
 import org.scorpion.util.file.FileManager;
 import org.scorpion.util.user.User;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
-import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -113,7 +110,6 @@ public class HoneyAPI {
         addSetting("message.kick-syntax", "%prefix% §c/kick <Player> <Reason>!");
         addSetting("message.glow", "%prefix% §7Glow: §e%state%");
         addSetting("message.glow-target", "%prefix% §7Glow: §e%state% §8| §6%target%");
-        addSetting("message.rtp-deny", "%prefix% §cYou can't teleport because the cooldown hasn't worn off! (500 seconds total)");
         addSetting("message.seen-target-offline", "%prefix% §7The player §c%target% §7is offline since §e%time%");
         addSetting("message.seen-target-online", "%prefix% §7The player §c%target% §7is online since §e%time%");
         addSetting("message.ban-player", "§c§lYou was banned!\n§7Reason: §e%reason%\n§7End: §e%time%");
@@ -121,7 +117,6 @@ public class HoneyAPI {
         addSetting("message.ban-player-message", "%prefix% §e%target% §7wurde gebannt.");
         addSetting("message.kill", "%prefix% §7You was killed!");
         addSetting("message.kill-target", "%prefix% §7The player §e%target% §7was killed!");
-        ;
         addSetting("message.broadcast", "%prefix% §8» §a%bc%");
         addSetting("message.broadcast-syntax", "%prefix% §c/Broadcast (Text)");
         addSetting("message.sudo-syntax", "%prefix% §c/Sudo (Player) (Message)");

@@ -4,10 +4,7 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
-import org.json.JSONObject;
 import org.scorpion.user.HoneyUser;
-import org.scorpion.util.Time;
 import org.scorpion.util.file.FileManager;
 import org.scorpion.util.user.User;
 
@@ -216,27 +213,12 @@ public class HoneyAPI {
         target.sendMessage(getPrefix() + "§7You have received a teleport request from §c" + sender.getName() + "§7!");
     }
 
-    private static Object getWebData(String u, String data) {
-        try {
-            URL url = new URL(u);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-
-            String line = reader.readLine();
-            JSONObject json = new JSONObject(line);
-            return json.getString(data);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
     public static String getPluginVersion() {
-        return getWebData("https://sunlightscorpion.de/honey.json", "plugin").toString();
+        return null;
     }
 
     public static boolean needUpdate(String version) {
-        String current = getWebData("https://sunlightscorpion.de/honey.json", "plugin").toString();
-        return !current.equalsIgnoreCase(version);
+        return true;
     }
 
     public static boolean isSnapshot(String version) {
